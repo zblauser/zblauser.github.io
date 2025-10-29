@@ -1,0 +1,683 @@
+/* ========================================
+   GLOBAL STYLES
+   ======================================== */
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	background: #ffffff;
+	color: #000000;
+	font-family: 'Courier New', monospace;
+	line-height: 1.6;
+	overflow-x: hidden;
+}
+
+/* ========================================
+   HOMEPAGE STYLES
+   ======================================== */
+
+.container {
+	min-height: 100vh;
+	display: grid;
+	grid-template-columns: 1.2fr 0.8fr;
+	grid-template-rows: auto 1fr;
+	gap: 0;
+	padding: 3rem;
+	position: relative;
+}
+
+/* Diagonal slash across the page */
+.container::before {
+	content: '';
+	position: absolute;
+	top: 20%;
+	left: -10%;
+	width: 120%;
+	height: 8px;
+	background: #000000;
+	transform: rotate(-12deg);
+	z-index: 0;
+}
+
+/* Pulsing geometric shape - trippy background element */
+.container::after {
+	content: '';
+	position: absolute;
+	bottom: 15%;
+	right: 10%;
+	width: 200px;
+	height: 200px;
+	border: 3px solid rgba(0, 0, 0, 0.15);
+	transform: rotate(45deg);
+	animation: pulse 8s ease-in-out infinite;
+	z-index: 0;
+}
+
+@keyframes pulse {
+	0%, 100% { transform: rotate(45deg) scale(1); opacity: 0.15; }
+	50% { transform: rotate(45deg) scale(1.1); opacity: 0.25; }
+}
+
+/* IMAGE BLOCK - Tilted with RGB split */
+.image-block {
+	grid-column: 1;
+	grid-row: 1 / 3;
+	display: flex;
+	align-items: flex-start;
+	justify-content: flex-start;
+	padding-right: 2rem;
+	padding-top: 6rem;
+	position: relative;
+	z-index: 1;
+}
+
+.image-block img {
+	width: 380px;
+	height: 380px;
+	object-fit: cover;
+	border: 6px solid #000000;
+	filter: grayscale(100%) contrast(1.4) brightness(0.95);
+	image-rendering: crisp-edges;
+	transform: rotate(-3deg);
+	box-shadow: 
+		12px 12px 0 rgba(0, 0, 0, 0.15),
+		-2px -2px 0 rgba(255, 0, 0, 0.1),
+		2px 2px 0 rgba(0, 255, 255, 0.1);
+	position: relative;
+}
+
+/* TEXT BLOCK - Overlapping, aggressive scale */
+.text-block {
+	grid-column: 2;
+	grid-row: 1;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: flex-start;
+	padding-top: 12rem;
+	padding-left: 1rem;
+	position: relative;
+	z-index: 2;
+}
+
+/* Name with echo/shadow effect */
+h1 {
+	font-size: 5.5rem;
+	font-weight: 900;
+	letter-spacing: -0.08em;
+	line-height: 0.85;
+	text-transform: uppercase;
+	margin-bottom: 3rem;
+	position: relative;
+	transform: rotate(-2deg);
+}
+
+/* Heavy underline slash */
+h1::after {
+	content: '';
+	position: absolute;
+	bottom: -12px;
+	left: 0;
+	width: 110%;
+	height: 12px;
+	background: #000000;
+	transform: rotate(1deg);
+}
+
+.subtitle {
+	font-size: 1.4rem;
+	font-weight: 400;
+	line-height: 1.2;
+	text-transform: lowercase;
+	font-family: 'Georgia', serif;
+	letter-spacing: 0.02em;
+	transform: translateX(-8px);
+}
+
+/* NAV BLOCK - Inverted section with glitch hover */
+.nav-block {
+	grid-column: 1 / 3;
+	grid-row: 2;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: flex-end;
+	gap: 3rem;
+	padding: 3rem;
+	background: #000000;
+	color: #ffffff;
+	margin-top: 4rem;
+	margin-left: -3rem;
+	margin-right: -3rem;
+	margin-bottom: -3rem;
+	position: relative;
+	z-index: 3;
+}
+
+.nav-block a {
+	font-size: 2rem;
+	font-weight: 900;
+	text-decoration: none;
+	color: #ffffff;
+	text-transform: uppercase;
+	letter-spacing: 0.15em;
+	border-bottom: 4px solid transparent;
+	transition: all 0.15s;
+	transform: skewX(-5deg);
+	position: relative;
+}
+
+/* Glitch effect on hover */
+.nav-block a:hover {
+	border-bottom: 4px solid #ffffff;
+	transform: skewX(-5deg) translateY(-4px);
+	animation: glitch 0.3s;
+}
+
+@keyframes glitch {
+	0% { transform: skewX(-5deg) translateY(-4px); }
+	25% { transform: skewX(-5deg) translateY(-4px) translateX(2px); }
+	50% { transform: skewX(-5deg) translateY(-4px) translateX(-2px); }
+	75% { transform: skewX(-5deg) translateY(-4px) translateX(1px); }
+	100% { transform: skewX(-5deg) translateY(-4px); }
+}
+
+/* Geometric accent */
+.nav-block::before {
+	content: '';
+	position: absolute;
+	top: -40px;
+	right: 20%;
+	width: 80px;
+	height: 80px;
+	border: 8px solid #000000;
+	background: #ffffff;
+	transform: rotate(45deg);
+}
+
+/* ========================================
+   RESUME PAGE STYLES
+   ======================================== */
+
+.resume-page {
+	padding: 2rem 4rem;
+	font-family: 'Georgia', serif;
+}
+
+/* Top navigation for resume/projects pages */
+.top-nav {
+	display: flex;
+	gap: 2rem;
+	justify-content: flex-start;
+	padding: 1.5rem 0 2rem 0;
+	border-bottom: 3px solid #000000;
+	margin-bottom: 3rem;
+}
+
+/* Top navigation for resume/projects pages */
+.top-nav a {
+	font-family: 'Courier New', monospace;
+	font-size: 1rem;
+	font-weight: 900;
+	text-decoration: none;
+	color: #000000;
+	text-transform: uppercase;
+	letter-spacing: 0.12em;
+	border-bottom: 3px solid transparent;
+	transition: border-bottom 0.2s ease;
+	display: inline-block;
+}
+
+.top-nav a:hover {
+	border-bottom: 3px solid #000000;
+}
+
+.top-nav a:hover {
+	animation: shake 0.3s ease;
+}
+
+/* Shake animation for nav hover */
+@keyframes shake {
+	0%, 100% { transform: translateX(0) rotate(0); }
+	25% { transform: translateX(-3px) rotate(-1deg); }
+	50% { transform: translateX(3px) rotate(1deg); }
+	75% { transform: translateX(-2px) rotate(-0.5deg); }
+}
+
+/* Resume container */
+.resume-container {
+	max-width: 900px;
+	margin: 0 auto;
+	padding: 0 2rem;
+}
+
+/* Download section */
+.download-section {
+	text-align: left;
+	margin-bottom: 3rem;
+}
+
+.download-btn {
+	display: inline-block;
+	font-family: 'Courier New', monospace;
+	font-size: 1rem;
+	font-weight: 900;
+	text-decoration: none;
+	color: #000000;
+	background: transparent;
+	padding: 0;
+	text-transform: uppercase;
+	letter-spacing: 0.12em;
+	border: none;
+	border-bottom: 3px solid transparent;
+	transition: border-bottom 0.2s ease;
+}
+
+.download-btn:hover {
+	border-bottom: 3px solid #000000;
+}
+
+.download-btn:hover {
+	animation: pulse-scale 0.3s ease;
+}
+
+/* Pulse scale animation for download button */
+@keyframes pulse-scale {
+	0%, 100% { transform: scale(1); }
+	50% { transform: scale(1.05); }
+}
+
+/* Resume header */
+.resume-header {
+	text-align: center;
+	margin-bottom: 3rem;
+	padding-bottom: 2rem;
+	border-bottom: 4px solid #000000;
+}
+
+.resume-header h1 {
+	font-family: 'Courier New', monospace;
+	font-size: 3rem;
+	font-weight: 900;
+	letter-spacing: -0.05em;
+	text-transform: uppercase;
+	margin-bottom: 1rem;
+	transform: none;
+}
+
+.resume-header h1::after {
+	display: none;
+}
+
+.contact-info, .links {
+	display: flex;
+	justify-content: center;
+	gap: 1.5rem;
+	flex-wrap: wrap;
+	font-size: 0.9rem;
+	margin-top: 0.5rem;
+}
+
+.contact-info span, .links span {
+	font-family: 'Courier New', monospace;
+}
+
+/* Resume sections */
+.resume-section {
+	margin-bottom: 2.5rem;
+}
+
+.resume-section h2 {
+	font-family: 'Courier New', monospace;
+	font-size: 1.3rem;
+	font-weight: 900;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	margin-bottom: 1rem;
+	padding-bottom: 0.5rem;
+	border-bottom: 3px solid #000000;
+}
+
+.resume-section p {
+	margin-bottom: 1rem;
+	text-align: justify;
+}
+
+/* Skills grid */
+.skills-grid {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 0.5rem;
+}
+
+.skills-grid div {
+	line-height: 1.8;
+}
+
+/* Job entries */
+.job, .education, .project {
+	margin-bottom: 2rem;
+}
+
+.job-header, .edu-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: baseline;
+	margin-bottom: 0.25rem;
+}
+
+.job-header h3, .edu-header h3 {
+	font-family: 'Courier New', monospace;
+	font-size: 1.1rem;
+	font-weight: 700;
+}
+
+.location {
+	font-family: 'Courier New', monospace;
+	font-size: 0.9rem;
+	font-style: italic;
+}
+
+.job-title, .edu-details {
+	display: flex;
+	justify-content: space-between;
+	font-style: italic;
+	margin-bottom: 0.5rem;
+	font-size: 0.95rem;
+}
+
+.date {
+	font-family: 'Courier New', monospace;
+	font-size: 0.9rem;
+}
+
+.job ul, .resume-section ul {
+	margin-left: 1.5rem;
+	margin-top: 0.5rem;
+}
+
+.job li, .resume-section li {
+	margin-bottom: 0.5rem;
+}
+
+/* Project entries */
+.project h3 {
+	font-family: 'Courier New', monospace;
+	font-size: 1rem;
+	font-weight: 700;
+	margin-bottom: 0.25rem;
+}
+
+.project p {
+	margin-bottom: 0.5rem;
+}
+
+.github-link {
+	font-style: italic;
+	margin-top: 1rem;
+}
+
+/* ========================================
+   PROJECTS PAGE STYLES
+   ======================================== */
+
+.projects-page {
+	padding: 2rem 4rem;
+	font-family: 'Georgia', serif;
+}
+
+/* Projects container */
+.projects-container {
+	max-width: 1000px;
+	margin: 0 auto;
+	padding: 0 2rem;
+}
+
+/* Projects header */
+.projects-header {
+	text-align: center;
+	margin-bottom: 4rem;
+	padding-bottom: 2rem;
+	border-bottom: 4px solid #000000;
+}
+
+.projects-header h1 {
+	font-family: 'Courier New', monospace;
+	font-size: 3rem;
+	font-weight: 900;
+	letter-spacing: -0.05em;
+	text-transform: uppercase;
+	transform: none;
+}
+
+/* Individual project section */
+.project-detail {
+	margin-bottom: 5rem;
+	padding-bottom: 3rem;
+	border-bottom: 2px solid #000000;
+}
+
+.project-detail:last-of-type {
+	border-bottom: none;
+}
+
+.project-content h2 {
+	font-family: 'Courier New', monospace;
+	font-size: 2.5rem;
+	font-weight: 900;
+	text-transform: uppercase;
+	letter-spacing: -0.03em;
+	margin-bottom: 0.5rem;
+}
+
+.project-subtitle {
+	font-family: 'Courier New', monospace;
+	font-size: 1.1rem;
+	font-style: italic;
+	margin-bottom: 2rem;
+	color: #333333;
+}
+
+/* Project image */
+.project-image {
+	margin: 2rem 0;
+	text-align: center;
+}
+
+.project-image img {
+	max-width: 100%;
+	height: auto;
+	border: 3px solid #000000;
+	box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.1);
+}
+
+/* Project description */
+.project-description {
+	margin-bottom: 2rem;
+}
+
+.project-description p {
+	margin-bottom: 1rem;
+	line-height: 1.8;
+}
+
+.project-description ul {
+	margin-left: 2rem;
+	margin-top: 0.5rem;
+	margin-bottom: 1rem;
+}
+
+.project-description li {
+	margin-bottom: 0.5rem;
+	line-height: 1.6;
+}
+
+.project-description code {
+	font-family: 'Courier New', monospace;
+	background: #f0f0f0;
+	padding: 0.2rem 0.4rem;
+	border: 1px solid #000000;
+}
+
+.tech-stack {
+	font-family: 'Courier New', monospace;
+	font-size: 0.95rem;
+	margin-top: 1.5rem;
+}
+
+/* Project link */
+.project-link {
+	display: inline-block;
+	font-family: 'Courier New', monospace;
+	font-size: 1rem;
+	font-weight: 900;
+	text-decoration: none;
+	color: #000000;
+	text-transform: uppercase;
+	letter-spacing: 0.12em;
+	border-bottom: 3px solid #000000;
+	padding-bottom: 0.25rem;
+	transition: all 0.2s;
+}
+
+.project-link:hover {
+	transform: translateX(5px);
+	border-bottom: 3px solid transparent;
+}
+
+/* More projects section */
+.more-projects {
+	text-align: center;
+	margin-top: 4rem;
+	padding-top: 2rem;
+	border-top: 2px solid #000000;
+	font-style: italic;
+}
+
+.more-projects a {
+	font-family: 'Courier New', monospace;
+	color: #000000;
+	text-decoration: underline;
+	font-weight: 700;
+}
+
+.more-projects a:hover {
+	text-decoration: none;
+}
+
+/* Projects page responsive */
+@media (max-width: 768px) {
+	.projects-page {
+		padding: 1rem 1.5rem;
+	}
+	
+	.projects-container {
+		padding: 0 1rem;
+	}
+
+	.projects-header h1 {
+		font-size: 2rem;
+	}
+
+	.project-content h2 {
+		font-size: 1.8rem;
+	}
+
+	.project-image img {
+		box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.1);
+	}
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+   ======================================== */
+
+/* Homepage responsive */
+@media (max-width: 768px) {
+	.container {
+		grid-template-columns: 1fr;
+		grid-template-rows: auto auto auto;
+		padding: 2rem;
+	}
+
+	.container::before,
+	.container::after {
+		display: none;
+	}
+
+	.image-block {
+		grid-column: 1;
+		grid-row: 1;
+		padding-right: 0;
+		padding-top: 0;
+		justify-content: center;
+		margin-bottom: 2rem;
+	}
+
+	.image-block img {
+		width: 280px;
+		height: 280px;
+		transform: rotate(-2deg);
+	}
+
+	.text-block {
+		grid-column: 1;
+		grid-row: 2;
+		padding-left: 0;
+		padding-top: 0;
+		align-items: center;
+	}
+
+	h1 {
+		font-size: 3rem;
+		text-align: center;
+	}
+
+	.subtitle {
+		text-align: center;
+		transform: none;
+	}
+
+	.nav-block {
+		grid-column: 1;
+		grid-row: 3;
+		flex-direction: column;
+		gap: 1.5rem;
+		align-items: center;
+		margin-left: -2rem;
+		margin-right: -2rem;
+	}
+
+	.nav-block::before {
+		display: none;
+	}
+}
+
+/* Resume page responsive */
+@media (max-width: 768px) {
+	.resume-page {
+		padding: 1rem 1.5rem;
+	}
+	
+	.resume-container {
+		padding: 0 1rem;
+	}
+
+	.resume-header h1 {
+		font-size: 2rem;
+	}
+
+	.contact-info, .links {
+		flex-direction: column;
+		gap: 0.5rem;
+	}
+
+	.job-header, .edu-header, .job-title, .edu-details {
+		flex-direction: column;
+		gap: 0.25rem;
+	}
+}
