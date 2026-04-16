@@ -3,143 +3,26 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Resume - Zachary Blauser</title>
+	<title>Resume — Zachary Blauser</title>
 	<link rel="stylesheet" href="style.css">
 </head>
-<body class="resume-page">
-	<nav class="top-nav">
-		<a href="index.html">HOME</a>
-		<a href="projects.html">PROJECTS</a>
-		<a href="mailto:zacharymblauser@gmail.com">CONTACT</a>
-	</nav>
+<body class="inner-page resume-page">
+	<nav class="top-nav"></nav>
 
 	<div class="resume-container">
-		<div class="download-section">
-			<a href="cv.pdf" class="download-btn" download>DOWNLOAD PDF</a>
+		<div class="resume-actions">
+			<a href="cv.pdf" class="card-link" download>DOWNLOAD PDF →</a>
+			<a href="cv.pdf" class="card-link" target="_blank">OPEN IN NEW TAB →</a>
 		</div>
-
-		<header class="resume-header">
-			<h1>ZACHARY BLAUSER</h1>
-			<div class="contact-info">
-				<span>Tampa, FL</span>
-				<span>+1 727 514 8912</span>
-				<span>github.com/zblauser</span>
-				<span>zacharymblauser@gmail.com</span>
-			</div>
-		</header>
-
-		<section class="resume-section">
-			<h2>PROFESSIONAL SUMMARY</h2>
-			<p>Software developer specializing in systems programming, infrastructure automation, and developer tooling. Proficient in C and Python with hands-on experience in enterprise telecommunications and large-scale network operations. Currently completing accelerated B.S./M.S. in Computer Science while building production tools used in commercial deployment workflows. Proven ability to design, build, and ship software that solves real operational problems.</p>
-		</section>
-
-		<section class="resume-section">
-			<h2>TECHNICAL SKILLS</h2>
-			<div class="skills-grid">
-				<div><strong>Languages:</strong> C, Python, JavaScript, Bash, SQL, HTML/CSS</div>
-				<div><strong>Operating Systems:</strong> Linux (Arch, Alpine, Debian, Ubuntu), macOS, Windows</div>
-				<div><strong>Systems & Infrastructure:</strong> Git, Docker, Network Infrastructure, TUI Development</div>
-				<div><strong>Tools/Frameworks:</strong> Flask, Tkinter, FFmpeg, Make, Regex, SAP ERP</div>
-				<div><strong>Specializations:</strong> Systems Programming, Infrastructure Automation, CLI Tooling, DevOps Workflows</div>
-			</div>
-		</section>
-
-		<section class="resume-section">
-			<h2>PROFESSIONAL EXPERIENCE</h2>
-			
-			<div class="job">
-				<div class="job-header">
-					<h3>Spectrum (Charter Communications)</h3>
-					<span class="location">Tampa, FL</span>
-				</div>
-				<div class="job-title">
-					<span>Network Field Support Representative III</span>
-					<span class="date">Feb 2025 — Present</span>
-				</div>
-				<ul>
-					<li>Enterprise-level routing and deployment for high-value commercial accounts across multi-state service regions.</li>
-					<li>Coordinate project managers, field leaders, and engineering teams in resolving installation and infrastructure issues.</li>
-					<li>Assist in troubleshooting network configurations and dispatch logistics for large-scale fiber and coax technicians.</li>
-					<li>Develop internal automation tools to streamline daily workflow and improve large point job efficiency.</li>
-				</ul>
-			</div>
-
-			<div class="job">
-				<div class="job-header">
-					<h3>Polaris Connectors (NSI)</h3>
-					<span class="location">New Port Richey, FL</span>
-				</div>
-				<div class="job-title">
-					<span>Lead Production Operator</span>
-					<span class="date">Sep 2023 — Jun 2024</span>
-				</div>
-				<ul>
-					<li>Led production line operations, while holding a 99.9% in quality and assurance.</li>
-					<li>Tested CNC and finished components to flag inventory anomalies and expedite part sequencing.</li>
-					<li>Collaborated with engineering to reduce downtime in fabrication process.</li>
-				</ul>
-			</div>
-
-			<div class="job">
-				<div class="job-header">
-					<h3>Pall Aeropower (Danaher)</h3>
-					<span class="location">New Port Richey, FL</span>
-				</div>
-				<div class="job-title">
-					<span>Production/Assembly</span>
-					<span class="date">Oct 2021 — Jul 2023</span>
-				</div>
-				<ul>
-					<li>Utilized SAP inventory management system to track aerospace components at various stages of the assembly process.</li>
-					<li>Partnered with warehouse engineers to improve the raw mesh and media materials in aerospace components.</li>
-					<li>Fabricated oil/air filters from cut material and CNC parts, at all stages of the process.</li>
-					<li>Supported production goals, i.e. project for the "Airbus XLR," by improving raw material logistics and traceability.</li>
-				</ul>
-			</div>
-		</section>
-
-		<section class="resume-section">
-			<h2>EDUCATION</h2>
-			
-			<div class="education">
-				<div class="edu-header">
-					<h3>Western Governors University</h3>
-					<span class="location">Salt Lake City, Utah</span>
-				</div>
-				<div class="edu-details">
-					<span><em>B.S. in Computer Science — Graduating May 2026</em></span>
-				</div>
-				<p>Progressing directly to M.S. in Computer Science upon completion.</p>
-				<p><strong>Relevant coursework:</strong> Data Structures & Algorithms, Software Engineering, Computer Architecture, Network System Design, Web Development, AI/ML Foundations, Operating Systems, Database Management.</p>
-			</div>
-
-			<div class="education">
-				<div class="edu-header">
-					<h3>University of South Florida</h3>
-					<span class="location">St. Petersburg, FL</span>
-				</div>
-				<div class="edu-details">
-					<span><em>B.A. in Political Science — Graduated May 2025</em></span>
-				</div>
-				<p><strong>Relevant coursework:</strong> Statistics & Probability, R Programming.</p>
-			</div>
-		</section>
-
-		<section class="resume-section">
-			<h2>PROJECTS</h2>
-			
-			<div class="project">
-				<h3>Hako — Modal Text Editor (C)</h3>
-				<p><em>v0.0.7 — github.com/zblauser/hako</em></p>
-				<p>Lightweight terminal-based text editor with vim-inspired modal editing, syntax highlighting, split-screen navigation, an internal explorer, and configured via .hakorc. Built for performance and portability across Unix-like systems. Active development includes planned LLM integration for in-editor AI, using a model of choice, including local models.</p>
-			</div>
-
-			<div class="project">
-				<h3>LoMux — FFmpeg GUI Front-End (Python/Tkinter)</h3>
-				<p><em>v1.0.0 — github.com/zblauser/LoMux</em></p>
-				<p>User-friendly interface for FFmpeg that simplifies batch encoding, codec flag management, and format presets.</p>
-			</div>
-		</section>
+		<div class="resume-embed-wrap">
+			<iframe src="assets/cv.pdf" title="Zachary Blauser Resume">
+				<p>Your browser doesn't support embedded PDFs.
+				<a href="cv.pdf">Download the resume here.</a></p>
+			</iframe>
+		</div>
 	</div>
+
+	<script src="site.js"></script>
+	<script>Site.injectNav(); Site.injectFooter();</script>
 </body>
 </html>

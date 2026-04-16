@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Tools — Zachary Blauser</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body class="inner-page tools-page">
+	<nav class="top-nav"></nav>
+
+	<div class="tools-container">
+		<header class="inner-header">
+			<h1>TOOLS</h1>
+			<span class="header-sub">// what i reach for</span>
+		</header>
+
+		<div class="uses-intro">
+			<p>
+				I'm picky but not precious. If a tool gets out of my way, it stays.
+				If it asks me to restructure how I think to fit its worldview, it goes.
+				Most of what I use is boring on purpose — terminals, plain text,
+				things that work the same on every machine.
+			</p>
+			<p>
+				When the existing tools have the wrong shape, I write my own.
+				Hako exists because no editor did what I wanted. Sigil exists
+				because find-and-replace is broken in a specific way nobody fixed.
+				That's the pattern.
+			</p>
+		</div>
+
+		<div class="tools-graph-wrap">
+			<div class="tools-graph-header">
+				<span class="tools-graph-label">// drag nodes · scroll to zoom · drag empty space to pan</span>
+				<span class="tools-graph-legend" id="tools-legend"></span>
+			</div>
+			<div class="tools-graph-controls">
+				<button type="button" id="tg-zoom-out" class="tg-btn" aria-label="Zoom out">−</button>
+				<button type="button" id="tg-zoom-reset" class="tg-btn" aria-label="Reset view">◎</button>
+				<button type="button" id="tg-zoom-in" class="tg-btn" aria-label="Zoom in">+</button>
+			</div>
+			<svg id="tools-graph" class="tools-graph"></svg>
+		</div>
+	</div>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+	<script src="site.js"></script>
+	<script>
+	(function () {
+		'use strict';
+
+		/* ========================================
+		   NODE DATA
+		   size: relative node radius driver (rough hour-weight, 1–10)
+		   cat: category key for color
+		   ======================================== */
+
+		const CATEGORIES = {
+			lang:    { label: 'languages',     color: '#1a1008' },
+			editor:  { label: 'editors',       color: '#555555' },
+			infra:   { label: 'infra',         color: '#3572A5' },
+			ml:      { label: 'ai / ml',       color: '#b3541e' },
+			hw:      { label: 'hardware',      color: '#427819' },
+			os:      { label: 'os / shell',    color: '#6e4a2b' }
+		};
+
+		const NODES = [
+			// languages
+			{ id: 'C',            cat: 'lang',   size: 10 },
+			{ id: 'Python',       cat: 'lang',   size: 10 },
+			{ id: 'Rust',         cat: 'lang',   size: 8 },
+			{ id: 'JavaScript',   cat: 'lang',   size: 8 },
+			{ id: 'Bash',         cat: 'lang',   size: 9 },
+			{ id: 'SQL',          cat: 'lang',   size: 7 },
+			{ id: 'Go',           cat: 'lang',   size: 6 },
+			{ id: 'Java',         cat: 'lang',   size: 5 },
+			{ id: 'Vim Script',   cat: 'lang',   size: 5 },
+			{ id: 'HTML/CSS',     cat: 'lang',   size: 6 },
+			{ id: 'TypeScript',   cat: 'lang',   size: 4 },
+
+			// editors
+			{ id: 'Hako',         cat: 'editor', size: 10 },
+			{ id: 'Neovim',       cat: 'editor', size: 8 },
+			{ id: 'vim',          cat: 'editor', size: 8 },
+			{ id: 'tmux',         cat: 'editor', size: 7 },
+			{ id: 'Claude Code',  cat: 'editor', size: 5 },
+			{ id: 'Codex',        cat: 'editor', size: 3 },
+
+			// os / shell
+			{ id: 'Arch Linux',   cat: 'os',     size: 9 },
+			{ id: 'macOS',        cat: 'os',     size: 7 },
+			{ id: 'BSD',          cat: 'os',     size: 3 },
+			{ id: 'zsh',          cat: 'os',     size: 6 },
+			{ id: 'kitty',        cat: 'os',     size: 5 },
+
+			// infra / tooling
+			{ id: 'Git',          cat: 'infra',  size: 10 },
+			{ id: 'Docker',       cat: 'infra',  size: 8 },
+			{ id: 'PostgreSQL',   cat: 'infra',  size: 8 },
+			{ id: 'FastAPI',      cat: 'infra',  size: 7 },
+			{ id: 'React',        cat: 'infra',  size: 7 },
+			{ id: 'GitHub Actions', cat: 'infra', size: 6 },
+			{ id: 'AWS',          cat: 'infra',  size: 5 },
+			{ id: 'Wireshark',    cat: 'infra',  size: 4 },
+			{ id: 'MySQL',        cat: 'infra',  size: 4 },
+			{ id: 'MongoDB',      cat: 'infra',  size: 3 },
+			{ id: 'Spring Boot',  cat: 'infra',  size: 4 },
+			{ id: 'Node.js',      cat: 'infra',  size: 5 },
+			{ id: 'Angular',      cat: 'infra',  size: 3 },
+
+			// ai / ml
+			{ id: 'Ollama',       cat: 'ml',     size: 7 },
+			{ id: 'scikit-learn', cat: 'ml',     size: 5 },
+			{ id: 'PyTorch',      cat: 'ml',     size: 5 },
+			{ id: 'pandas',       cat: 'ml',     size: 6 },
+			{ id: 'numpy',        cat: 'ml',     size: 6 },
+			{ id: 'Claude API',   cat: 'ml',     size: 6 },
+			{ id: 'Hugging Face', cat: 'ml',     size: 3 },
+
+			// hardware / bench
+			{ id: 'LTSpice',      cat: 'hw',     size: 5 },
+			{ id: 'KiCad',        cat: 'hw',     size: 3 },
+			{ id: 'Arduino',      cat: 'hw',     size: 5 },
+			{ id: 'ESP32',        cat: 'hw',     size: 4 },
+			{ id: 'Raspberry Pi', cat: 'hw',     size: 5 },
+			{ id: 'Oscilloscope', cat: 'hw',     size: 4 },
+			{ id: 'Multimeter',   cat: 'hw',     size: 6 }
+		];
+
+		/* ========================================
+		   LINKS
+		   Sparse — connect tools that go together
+		   ======================================== */
+
+		const LINKS = [
+			// languages → infra
+			['Python', 'FastAPI'], ['Python', 'pandas'], ['Python', 'numpy'], ['Python', 'scikit-learn'], ['Python', 'PyTorch'],
+			['JavaScript', 'React'], ['JavaScript', 'Node.js'], ['JavaScript', 'Angular'],
+			['TypeScript', 'React'],
+			['Java', 'Spring Boot'],
+			['Rust', 'Hako'],
+			['C', 'Hako'],
+			['Vim Script', 'Neovim'], ['Vim Script', 'vim'],
+			['Bash', 'Arch Linux'], ['Bash', 'zsh'],
+			['SQL', 'PostgreSQL'], ['SQL', 'MySQL'],
+
+			// editors cluster
+			['Hako', 'Neovim'], ['Neovim', 'vim'], ['vim', 'tmux'], ['Neovim', 'tmux'],
+			['Claude Code', 'tmux'], ['Codex', 'tmux'],
+
+			// os cluster
+			['Arch Linux', 'zsh'], ['Arch Linux', 'kitty'], ['macOS', 'zsh'],
+			['Arch Linux', 'Docker'], ['macOS', 'Docker'],
+			['BSD', 'Arch Linux'],
+
+			// infra cluster
+			['Docker', 'PostgreSQL'], ['Docker', 'FastAPI'], ['Docker', 'AWS'],
+			['Git', 'GitHub Actions'], ['GitHub Actions', 'AWS'],
+			['FastAPI', 'React'],
+			['PostgreSQL', 'FastAPI'],
+			['Wireshark', 'Arch Linux'],
+
+			// ml cluster
+			['Ollama', 'Hako'], ['Ollama', 'Claude API'],
+			['pandas', 'numpy'], ['PyTorch', 'Hugging Face'], ['scikit-learn', 'pandas'],
+			['Claude API', 'FastAPI'],
+
+			// hardware cluster
+			['LTSpice', 'KiCad'], ['Arduino', 'ESP32'], ['Arduino', 'C'],
+			['ESP32', 'C'], ['ESP32', 'Raspberry Pi'],
+			['Raspberry Pi', 'Arch Linux'], ['Raspberry Pi', 'Python'],
+			['Oscilloscope', 'Multimeter'], ['Multimeter', 'Arduino']
+		];
+
+		/* ========================================
+		   RENDER
+		   ======================================== */
+
+		const svgEl = document.getElementById('tools-graph');
+		const svg = d3.select(svgEl);
+
+		// Build link objects referencing node ids
+		const nodeById = new Map(NODES.map(n => [n.id, { ...n }]));
+		const links = LINKS
+			.filter(([a, b]) => nodeById.has(a) && nodeById.has(b))
+			.map(([a, b]) => ({ source: a, target: b }));
+		const nodes = Array.from(nodeById.values());
+
+		// Zoom container — everything inside `g` is pannable + zoomable
+		const g = svg.append('g');
+		const linkGroup = g.append('g').attr('class', 'tg-links');
+		const nodeGroup = g.append('g').attr('class', 'tg-nodes');
+
+		// Track current viewport dims so bounding force can use them
+		let viewW = 800, viewH = 600;
+
+		const link = linkGroup.selectAll('line')
+			.data(links)
+			.join('line')
+			.attr('stroke', 'rgba(26,16,8,0.18)')
+			.attr('stroke-width', 1);
+
+		const node = nodeGroup.selectAll('g')
+			.data(nodes, d => d.id)
+			.join('g')
+			.attr('class', 'tg-node')
+			.style('cursor', 'grab');
+
+		// radius from size (6 → 22 px)
+		const radius = d => 6 + d.size * 1.6;
+
+		node.append('circle')
+			.attr('r', radius)
+			.attr('fill', d => CATEGORIES[d.cat].color)
+			.attr('fill-opacity', 0.85)
+			.attr('stroke', '#1a1008')
+			.attr('stroke-width', 0.8)
+			.attr('stroke-opacity', 0.4);
+
+		node.append('text')
+			.text(d => d.id)
+			.attr('font-family', "'Courier New', monospace")
+			.attr('font-size', d => Math.max(10, 9 + d.size * 0.22))
+			.attr('font-weight', d => d.size >= 7 ? 900 : 700)
+			.attr('text-anchor', 'middle')
+			.attr('dy', d => radius(d) + 11)
+			.attr('fill', 'rgba(26,16,8,0.78)')
+			.attr('paint-order', 'stroke')
+			.attr('stroke', 'rgba(242, 236, 224, 0.85)')
+			.attr('stroke-width', 3)
+			.style('pointer-events', 'none');
+
+		// Legend
+		const legend = d3.select('#tools-legend');
+		legend.selectAll('span').data(Object.entries(CATEGORIES)).join('span')
+			.attr('class', 'tools-legend-item')
+			.html(([key, v]) => `<span class="tools-legend-dot" style="background:${v.color}"></span>${v.label}`);
+
+		// Hover dim
+		node.on('mouseenter', function (event, d) {
+			const neighbors = new Set([d.id]);
+			links.forEach(l => {
+				const s = typeof l.source === 'object' ? l.source.id : l.source;
+				const t = typeof l.target === 'object' ? l.target.id : l.target;
+				if (s === d.id) neighbors.add(t);
+				if (t === d.id) neighbors.add(s);
+			});
+			node.select('circle').attr('fill-opacity', n => neighbors.has(n.id) ? 0.95 : 0.15);
+			node.select('text').attr('fill-opacity', n => neighbors.has(n.id) ? 1 : 0.2);
+			link.attr('stroke-opacity', l => {
+				const s = typeof l.source === 'object' ? l.source.id : l.source;
+				const t = typeof l.target === 'object' ? l.target.id : l.target;
+				return (s === d.id || t === d.id) ? 1 : 0.15;
+			}).attr('stroke', l => {
+				const s = typeof l.source === 'object' ? l.source.id : l.source;
+				const t = typeof l.target === 'object' ? l.target.id : l.target;
+				return (s === d.id || t === d.id) ? 'rgba(26,16,8,0.55)' : 'rgba(26,16,8,0.18)';
+			});
+		}).on('mouseleave', function () {
+			node.select('circle').attr('fill-opacity', 0.85);
+			node.select('text').attr('fill-opacity', 1);
+			link.attr('stroke-opacity', 1).attr('stroke', 'rgba(26,16,8,0.18)');
+		});
+
+		// Simulation — with a bounding force that keeps nodes on screen
+		const sim = d3.forceSimulation(nodes)
+			.force('link', d3.forceLink(links).id(d => d.id).distance(70).strength(0.4))
+			.force('charge', d3.forceManyBody().strength(-220))
+			.force('center', d3.forceCenter(0, 0))
+			.force('collide', d3.forceCollide().radius(d => radius(d) + 18))
+			.force('bounds', function () {
+				// Keep nodes within viewport bounds (viewBox centered at 0,0)
+				const padX = 40;
+				const padY = 40;
+				const halfW = viewW / 2 - padX;
+				const halfH = viewH / 2 - padY;
+				for (const n of nodes) {
+					const r = radius(n);
+					if (n.x - r < -halfW) n.x = -halfW + r;
+					if (n.x + r > halfW) n.x = halfW - r;
+					if (n.y - r < -halfH) n.y = -halfH + r;
+					if (n.y + r > halfH) n.y = halfH - r;
+				}
+			});
+
+		sim.on('tick', () => {
+			link
+				.attr('x1', d => d.source.x)
+				.attr('y1', d => d.source.y)
+				.attr('x2', d => d.target.x)
+				.attr('y2', d => d.target.y);
+			node.attr('transform', d => `translate(${d.x},${d.y})`);
+		});
+
+		// Drag — works when zoomed too (d3 drag composes with zoom transform via sourceEvent)
+		const drag = d3.drag()
+			.on('start', (event, d) => {
+				if (!event.active) sim.alphaTarget(0.3).restart();
+				d.fx = d.x; d.fy = d.y;
+			})
+			.on('drag', (event, d) => {
+				d.fx = event.x; d.fy = event.y;
+			})
+			.on('end', (event, d) => {
+				if (!event.active) sim.alphaTarget(0);
+				d.fx = null; d.fy = null;
+			});
+		node.call(drag);
+
+		// Zoom + pan — scroll wheel, pinch, or click-drag empty space
+		const zoom = d3.zoom()
+			.scaleExtent([0.5, 3])
+			.filter(function (event) {
+				// Allow pan on mouse drag only when NOT on a node
+				if (event.type === 'mousedown' || event.type === 'touchstart') {
+					return !event.target.closest('.tg-node');
+				}
+				// Always allow wheel + pinch
+				return !event.ctrlKey || event.type === 'wheel';
+			})
+			.on('zoom', (event) => {
+				g.attr('transform', event.transform);
+			});
+
+		svg.call(zoom);
+
+		// Zoom controls
+		document.getElementById('tg-zoom-in').addEventListener('click', () => {
+			svg.transition().duration(200).call(zoom.scaleBy, 1.3);
+		});
+		document.getElementById('tg-zoom-out').addEventListener('click', () => {
+			svg.transition().duration(200).call(zoom.scaleBy, 1 / 1.3);
+		});
+		document.getElementById('tg-zoom-reset').addEventListener('click', () => {
+			svg.transition().duration(300).call(zoom.transform, d3.zoomIdentity);
+			// Also unpin any dragged nodes and re-settle
+			nodes.forEach(n => { n.fx = null; n.fy = null; });
+			sim.alpha(0.6).restart();
+		});
+
+		// Responsive sizing
+		function resize() {
+			const wrap = svgEl.parentElement;
+			const w = wrap.clientWidth;
+			const h = Math.max(480, Math.min(720, Math.round(w * 0.78)));
+			viewW = w;
+			viewH = h;
+			svgEl.setAttribute('viewBox', `${-w/2} ${-h/2} ${w} ${h}`);
+			svgEl.style.height = h + 'px';
+			sim.force('center', d3.forceCenter(0, 0));
+			sim.alpha(0.4).restart();
+		}
+		resize();
+		window.addEventListener('resize', resize);
+	})();
+
+	Site.injectNav(); Site.injectFooter();
+	</script>
+</body>
+</html>

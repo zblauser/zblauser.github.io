@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Log — Zachary Blauser</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body class="inner-page">
+	<nav class="top-nav"></nav>
+
+	<div class="inner-container">
+		<header class="inner-header">
+			<h1>LOG</h1>
+			<span class="header-sub">// activity across the wire</span>
+		</header>
+
+		<div id="log-container">
+			<p class="log-loading">// fetching signals...</p>
+		</div>
+	</div>
+
+	<script src="gh.js"></script>
+	<script src="site.js"></script>
+	<script>
+		function groupByDate(items) {
+			const groups = {};
+			items.forEach(c => {
+				const date = new Date(c.time).toDateString();
+				if (!groups[date]) groups[date] = [];
+				groups[date].push(c);
+			});
+			return groups;
+		}
+
+		function sourceBadge(source) {
+			const cls = source === 'dev.to' ? 'src-dev'
+				: source === 'rust' ? 'src-rust'
+				: 'src-gh';
+			const label = source === 'dev.to' ? 'dev.to'
+				: source === 'rust' ? 'rust'
+				: 'github';
+			return `<span class="log-source ${cls}">${label}</span>`;
+		}
+
+		function renderEntry(c) {
+			const repoChunk = c.source === 'github'
+				? `<a href="${c.repoUrl}" class="log-repo" target="_blank" rel="noopener">${GH.escapeHtml(c.repo)}</a>`
+				: `<span class="log-repo">${GH.escapeHtml(c.repo || c.source)}</span>`;
+
+			const shaChunk = c.sha
+				? `<a href="${c.url}" class="log-sha" target="_blank" rel="noopener">${GH.escapeHtml(c.sha)}</a>`
+				: '';
+
+			// For dev.to, the title is clickable; for github, we link the message to the commit
+			let messageHtml;
+			if (c.source === 'dev.to') {
+				messageHtml = `<a href="${c.url}" target="_blank" rel="noopener">${GH.escapeHtml(c.title || c.message)}</a>`;
+			} else if (c.url) {
+				messageHtml = `<a href="${c.url}" target="_blank" rel="noopener">${GH.escapeHtml(c.message)}</a>`;
+			} else {
+				messageHtml = GH.escapeHtml(c.message);
+			}
+
+			return `
+				<div class="log-entry">
+					<div class="log-entry-header">
+						${sourceBadge(c.source)}
+						${repoChunk}
+						${shaChunk}
+					</div>
+					<p class="log-message">${messageHtml}</p>
+					${c.body ? `<p class="log-body">${GH.escapeHtml(c.body)}</p>` : ''}
+				</div>
+			`;
+		}
+
+		async function renderLog() {
+			const container = document.getElementById('log-container');
+
+			const [ghResult, devArticles, rustPosts] = await Promise.all([
+				GH.fetchEvents(),
+				Site.fetchDevtoArticles('zblauser'),
+				Site.fetchRustForumPosts('zblauser')
+			]);
+
+			const ghEvents = ghResult.events || [];
+			const devItems = (devArticles || []).map(a => ({
+				source: 'dev.to',
+				repo: 'dev.to',
+				repoUrl: 'https://dev.to/zblauser',
+				sha: '',
+				message: a.title,
+				title: a.title,
+				body: '',
+				time: a.time,
+				url: a.url
+			}));
+			const rustItems = (rustPosts || []).map(p => ({
+				source: 'rust',
+				repo: 'rust forum',
+				repoUrl: 'https://users.rust-lang.org/u/zblauser',
+				sha: '',
+				message: p.kind ? `${p.kind}: ${p.title}` : p.title,
+				title: p.title,
+				body: '',
+				time: p.time,
+				url: p.url
+			}));
+
+			const all = [...ghEvents, ...devItems, ...rustItems]
+				.filter(x => x.time)
+				.sort((a, b) => new Date(b.time) - new Date(a.time));
+
+			if (all.length === 0) {
+				container.innerHTML = '<p class="log-empty">// no signal</p>';
+				return;
+			}
+
+			const grouped = groupByDate(all);
+			const html = Object.entries(grouped).map(([date, items]) => `
+				<div class="log-day">
+					<h3 class="log-date">${GH.formatDate(items[0].time)}</h3>
+					${items.map(renderEntry).join('')}
+				</div>
+			`).join('');
+
+			container.innerHTML = html;
+		}
+
+		renderLog();
+		Site.injectNav(); Site.injectFooter();
+	</script>
+</body>
+</html>

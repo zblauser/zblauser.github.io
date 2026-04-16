@@ -8,22 +8,60 @@
 </head>
 <body>
 	<div class="container">
-		<!-- IMAGE PLACEHOLDER: 400x400px square, black and white preferred -->
-		<!-- Place your image in /assets/profile.jpg or profile.png -->
 		<div class="image-block">
 			<img src="assets/profile.jpg" alt="Zachary Blauser">
 		</div>
 
 		<div class="text-block">
 			<h1>ZACHARY BLAUSER</h1>
-			<p class="subtitle">Systems programmer<br>Infrastructure automation<br>Developer tooling</p>
+			<p class="subtitle">systems programmer<br>infrastructure automation<br>developer tooling</p>
+		</div>
+
+		<div class="activity-feed">
+			<h3>// recent activity</h3>
+			<ul class="activity-list" id="activity-list">
+				<li class="activity-loading">fetching commits...</li>
+			</ul>
 		</div>
 
 		<nav class="nav-block">
 			<a href="projects.html">PROJECTS</a>
-			<a href="resume.html">RESUME</a>
-			<a href="mailto:zacharymblauser@gmail.com">CONTACT</a>
+			<a href="now.html">NOW</a>
+			<a href="log.html">LOG</a>
+			<a href="about.html">ABOUT</a>
+			<a href="uses.html">TOOLS</a>
+			<a href="mailto:zacharymblauser@gmail.com" class="contact-cta">CONTACT</a>
 		</nav>
 	</div>
+
+	<script src="gh.js"></script>
+	<script src="site.js"></script>
+	<script>
+		async function renderActivity() {
+			const list = document.getElementById('activity-list');
+			const { events, error } = await GH.fetchEvents();
+
+			if (error && events.length === 0) {
+				list.innerHTML = '<li class="activity-item"><span class="message">// activity unavailable</span></li>';
+				return;
+			}
+			if (events.length === 0) {
+				list.innerHTML = '<li class="activity-item"><span class="message">// no recent activity</span></li>';
+				return;
+			}
+
+			const top = events.slice(0, 7);
+			list.innerHTML = top.map(item => `
+				<li class="activity-item">
+					<span class="repo">${GH.escapeHtml(item.repo)}</span>
+					<span class="message">${GH.escapeHtml(GH.truncate(item.message, 55))}</span>
+					<span class="time">${GH.timeAgo(item.time)}</span>
+				</li>
+			`).join('');
+		}
+
+		renderActivity();
+		Site.injectNav({ variant: 'home' }); Site.injectFooter({ variant: 'home', sig: '// transmission continues' });
+	</script>
 </body>
 </html>

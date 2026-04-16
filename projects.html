@@ -3,86 +3,335 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Projects - Zachary Blauser</title>
+	<title>Projects — Zachary Blauser</title>
 	<link rel="stylesheet" href="style.css">
 </head>
-<body class="projects-page">
-	<nav class="top-nav">
-		<a href="index.html">HOME</a>
-		<a href="resume.html">RESUME</a>
-		<a href="mailto:zacharymblauser@gmail.com">CONTACT</a>
-	</nav>
+<body class="inner-page projects-page">
+	<nav class="top-nav"></nav>
 
 	<div class="projects-container">
 		<header class="projects-header">
 			<h1>PROJECTS</h1>
+			<span class="header-sub">// things i built</span>
 		</header>
 
-		<!-- HAKO PROJECT -->
-		<section class="project-detail">
-			<div class="project-content">
-				<h2>HAKO</h2>
-				<p class="project-subtitle">Modal Text Editor</p>
-				
-				<div class="project-image">
-					<img src="https://github.com/zblauser/hako/blob/main/assets/hako-logo.jpeg?raw=true" alt="Hako screenshot" onerror="this.style.display='none'">
-				</div>
-
-				<div class="project-description">
-					<p>Lightweight terminal-based text editor written in C with vim-inspired modal editing, syntax highlighting, line navigation, and <code>.hakorc</code> configuration. Built for performance and portability across Unix-like systems.</p>
-					
-					<p><strong>Current version:</strong> v0.0.7</p>
-					
-					<p><strong>Features:</strong></p>
-					<ul>
-						<li>Modal editing (normal, insert, visual modes)</li>
-						<li>Syntax highlighting</li>
-						<li>Line jump navigation</li>
-						<li>Customizable via .hakorc</li>
-						<li>Colon command parsing</li>
-					</ul>
-
-					<p><strong>Planned:</strong> LLM integration for in-editor AI assistance</p>
-
-					<p class="tech-stack"><strong>Tech:</strong> C, Terminal UI, Portable POSIX</p>
-				</div>
-
-				<a href="https://github.com/zblauser/hako" class="project-link" target="_blank">VIEW ON GITHUB →</a>
+		<!-- FIELDOPT -->
+		<article class="project-card" data-repo="fieldopt/FieldOpt">
+			<div class="card-header">
+				<span class="card-title">FIELDOPT</span>
+				<span class="version-badge" id="v-fieldopt">// fetching...</span>
 			</div>
-		</section>
-
-		<!-- LOMUX PROJECT -->
-		<section class="project-detail">
-			<div class="project-content">
-				<h2>LOMUX</h2>
-				<p class="project-subtitle">FFmpeg GUI Frontend</p>
-				
-				<div class="project-image">
-					<img src="https://github.com/zblauser/LoMux/blob/main/assets/LoMux-Demo.gif?raw=true" alt="LoMux screenshot" onerror="this.style.display='none'">
+			<p class="card-subtitle">Enterprise Field Service Management Console</p>
+			<p class="card-description">
+				The dispatch tooling at field service companies is slow, clunky, and built by people
+				who've never had to use it under pressure. I have. So I built a replacement —
+				a full enterprise FSM dispatch console with an async FastAPI backend, PostgreSQL,
+				and a React/AG Grid frontend that actually behaves like professional software.
+				The routing engine handles skill-based matching, geographic zones, capacity
+				management, and haversine distance calculation. Multi-monitor map support.
+				Keyboard shortcuts throughout. AGPL licensed. ML-assisted dispatch is next.
+			</p>
+			<div class="card-screenshots fieldopt-grid">
+				<div class="fieldopt-stack">
+					<img src="https://github.com/fieldopt/FieldOpt/blob/main/assets/dashboard.png?raw=true" alt="FieldOpt Dashboard" onerror="this.style.display='none'">
+					<img src="https://github.com/fieldopt/FieldOpt/blob/main/assets/personal.png?raw=true" alt="FieldOpt Personnel Display" onerror="this.style.display='none'">
+					<img src="https://github.com/fieldopt/FieldOpt/blob/main/assets/filter.png?raw=true" alt="FieldOpt Display Filter" onerror="this.style.display='none'">
 				</div>
-
-				<div class="project-description">
-					<p>User-friendly graphical interface for FFmpeg that simplifies batch encoding, codec flag management, and format presets. Designed for quick launch and intuitive interaction with cross-platform support.</p>
-					
-					<p><strong>Features:</strong></p>
-					<ul>
-						<li>Batch video encoding</li>
-						<li>Codec preset management</li>
-						<li>Format conversion</li>
-						<li>Cross-platform (Windows, Linux, macOS)</li>
-					</ul>
-
-					<p class="tech-stack"><strong>Tech:</strong> Python, Tkinter, FFmpeg</p>
+				<div class="fieldopt-stack">
+					<img src="https://github.com/fieldopt/FieldOpt/blob/main/assets/map.png?raw=true" alt="FieldOpt Map" onerror="this.style.display='none'">
+					<img src="https://github.com/fieldopt/FieldOpt/blob/main/assets/jobsearch.png?raw=true" alt="FieldOpt Job Search" onerror="this.style.display='none'">
 				</div>
-
-				<a href="https://github.com/zblauser/LoMux" class="project-link" target="_blank">VIEW ON GITHUB →</a>
 			</div>
-		</section>
+			<div class="lang-bar" data-langs></div>
+			<div class="card-footer">
+				<a href="https://fieldopt.dev" class="card-link demo" target="_blank">LIVE DEMO →</a>
+				<a href="https://github.com/fieldopt/FieldOpt" class="card-link" target="_blank">GITHUB →</a>
+				<div class="lang-group" data-lang-group>
+					<span class="lang-loading">fetching languages...</span>
+				</div>
+			</div>
+		</article>
 
-		<!-- ADDITIONAL PROJECTS NOTE -->
+		<!-- HAKO -->
+		<article class="project-card" data-repo="zblauser/hako">
+			<div class="card-header">
+				<span class="card-title">HAKO 箱</span>
+				<span class="version-badge" id="v-hako">// fetching...</span>
+			</div>
+			<p class="card-subtitle">Modal Text Editor</p>
+			<p class="card-description">
+				A vim-inspired modal text editor written from scratch in C. No dependencies
+				beyond the standard library and ncurses. Custom memory management, syntax
+				highlighting for 40+ languages, split-screen navigation, file explorer,
+				and a <code>.hakorc</code> configuration system. I wrote most of my CS
+				coursework in it. AI assistant panel (角 Kaku) is scaffolded —
+				agnostic LLM integration shipping in v0.0.9.
+			</p>
+			<div class="card-screenshots hako-grid">
+				<img class="hako-vertical" src="https://github.com/zblauser/hako/blob/main/assets/hako-logo.jpeg?raw=true" alt="Hako" onerror="this.style.display='none'">
+				<div class="hako-stack">
+					<img src="https://github.com/zblauser/hako/blob/main/assets/hako-explorer.jpeg?raw=true" alt="Hako Explorer" onerror="this.style.display='none'">
+					<img src="https://github.com/zblauser/hako/blob/main/assets/hako-split.jpeg?raw=true" alt="Hako Split" onerror="this.style.display='none'">
+				</div>
+			</div>
+			<div class="lang-bar" data-langs></div>
+			<div class="card-footer">
+				<a href="https://github.com/zblauser/hako" class="card-link" target="_blank">GITHUB →</a>
+				<div class="lang-group" data-lang-group>
+					<span class="lang-loading">fetching languages...</span>
+				</div>
+			</div>
+		</article>
+
+		<!-- LOMUX -->
+		<article class="project-card" data-repo="zblauser/LoMux">
+			<div class="card-header">
+				<span class="card-title">LOMUX</span>
+				<span class="version-badge" id="v-lomux">// fetching...</span>
+			</div>
+			<p class="card-subtitle">FFmpeg GUI — Adobe Media Encoder Alternative</p>
+			<p class="card-description">
+				Adobe Media Encoder costs money, runs heavy, and locks you in. FFmpeg is free
+				and does everything — but the CLI is a wall. LoMux is the middle ground:
+				a cross-platform GUI for batch encoding, codec management, format conversion,
+				and YouTube downloading via yt-dlp. Built in Rust. 3MB binary.
+				Runs at under 1% the RAM footprint of Adobe's equivalent.
+			</p>
+			<div class="card-screenshots">
+				<img src="https://github.com/zblauser/LoMux/blob/main/assets/lomux.jpg?raw=true" alt="LoMux" onerror="this.style.display='none'">
+			</div>
+			<div class="lang-bar" data-langs></div>
+			<div class="card-footer">
+				<a href="https://github.com/zblauser/LoMux" class="card-link" target="_blank">GITHUB →</a>
+				<div class="lang-group" data-lang-group>
+					<span class="lang-loading">fetching languages...</span>
+				</div>
+			</div>
+		</article>
+
+		<!-- CICADA + TYMBAL -->
+		<article class="project-card" data-repo="zblauser/cicada" data-secondary-repo="zblauser/tymbal">
+			<div class="card-header">
+				<span class="card-title">CICADA / TYMBAL</span>
+				<span class="version-badge" id="v-cicada">// fetching...</span>
+			</div>
+			<p class="card-subtitle">Web Reconnaissance Toolkit</p>
+			<p class="card-description">
+				Cicada is a modular CLI toolkit for web reconnaissance — fuzzing, decoding,
+				and enumeration built for pen testing starting points. Tymbal is its
+				lightweight companion: a Go binary that runs recon on anything with a shell,
+				no dependencies required. Two tools, one workflow.
+			</p>
+			<div class="card-screenshots">
+				<div class="fieldopt-stack">
+					<img src="https://github.com/zblauser/cicada/raw/main/assets/cicada.jpg" alt="Cicada" onerror="this.style.display='none'">
+					<img src="https://github.com/zblauser/cicada/raw/main/assets/cicada-output2.jpg" alt="Cicada Output" onerror="this.style.display='none'">
+				</div>
+				<div class="fieldopt-stack">
+					<img src="https://github.com/zblauser/cicada/raw/main/assets/cicada-output1.jpg" alt="Cicada HTML Output" onerror="this.style.display='none'">
+					<img src="https://github.com/zblauser/tymbal/raw/main/assets/tymbal-output1.jpg" alt="Tymbal Output" onerror="this.style.display='none'">
+					<img src="https://github.com/zblauser/tymbal/raw/main/assets/tymbal-output2.jpg" alt="Tymbal Output" onerror="this.style.display='none'">
+				</div>
+			</div>
+			<div class="lang-bar" data-langs></div>
+			<div class="card-footer">
+				<a href="https://github.com/zblauser/cicada" class="card-link" target="_blank">CICADA →</a>
+				<a href="https://github.com/zblauser/tymbal" class="card-link" target="_blank">TYMBAL →</a>
+				<div class="lang-group" data-lang-group>
+					<span class="lang-loading">fetching languages...</span>
+				</div>
+			</div>
+		</article>
+
+		<!-- SIGIL -->
+		<article class="project-card" data-repo="zblauser/sigil">
+			<div class="card-header">
+				<span class="card-title">SIGIL</span>
+				<span class="version-badge" id="v-sigil">// fetching...</span>
+			</div>
+			<p class="card-subtitle">Variable Parser for Vim/Neovim</p>
+			<p class="card-description">
+				A proper variable parser plugin for vim and neovim. Find and replace with
+				variable awareness — understands scope and naming patterns rather than
+				treating everything as a dumb string match. Built for the editor I
+				actually use.
+			</p>
+			<div class="card-screenshots">
+				<div class="fieldopt-stack">
+					<img src="https://github.com/zblauser/sigil/blob/main/assets/wide.jpg?raw=true" alt="Sigil Panel" onerror="this.style.display='none'">
+				</div>
+			</div>
+			<div class="lang-bar" data-langs></div>
+			<div class="card-footer">
+				<a href="https://github.com/zblauser/sigil" class="card-link" target="_blank">GITHUB →</a>
+				<div class="lang-group" data-lang-group>
+					<span class="lang-loading">fetching languages...</span>
+				</div>
+			</div>
+		</article>
+
 		<section class="more-projects">
-			<p>Additional projects and experiments available at <a href="https://github.com/zblauser" target="_blank">github.com/zblauser</a></p>
+			<p>Everything at <a href="https://github.com/zblauser" target="_blank">github.com/zblauser</a></p>
 		</section>
 	</div>
+
+	<script src="gh.js"></script>
+	<script src="site.js"></script>
+	<script>
+		/* --- GitHub language color palette (subset, curated) ------------- */
+		const LANG_COLORS = {
+			'C':            '#555555',
+			'C++':          '#f34b7d',
+			'Python':       '#3572A5',
+			'JavaScript':   '#f1e05a',
+			'TypeScript':   '#3178c6',
+			'Rust':         '#dea584',
+			'Go':           '#00ADD8',
+			'Java':         '#b07219',
+			'Shell':        '#89e051',
+			'HTML':         '#e34c26',
+			'CSS':          '#563d7c',
+			'Makefile':     '#427819',
+			'Dockerfile':   '#384d54',
+			'Vim Script':   '#199f4b',
+			'Vim script':   '#199f4b',
+			'Lua':          '#000080',
+			'Ruby':         '#701516',
+			'PHP':          '#4F5D95',
+			'Kotlin':       '#A97BFF',
+			'Swift':        '#F05138',
+			'SCSS':         '#c6538c',
+			'Jupyter Notebook': '#DA5B0B'
+		};
+		const LANG_FALLBACK = '#8b7355';
+
+		/* --- Version badge fetch (unchanged logic, kept lightweight) ---- */
+		async function fetchVersion(repo, elementId) {
+			const el = document.getElementById(elementId);
+			if (!el) return;
+			try {
+				const relRes = await fetch(`https://api.github.com/repos/${repo}/releases/latest`);
+				if (relRes.ok) {
+					const rel = await relRes.json();
+					if (rel.tag_name) { el.textContent = rel.tag_name; return; }
+				}
+				const tagRes = await fetch(`https://api.github.com/repos/${repo}/tags?per_page=1`);
+				if (tagRes.ok) {
+					const tags = await tagRes.json();
+					if (Array.isArray(tags) && tags[0]) { el.textContent = tags[0].name; return; }
+				}
+				el.textContent = '// —';
+			} catch {
+				el.textContent = '// —';
+			}
+		}
+
+		/* --- Languages fetch (cached) ----------------------------------- */
+		const LANG_CACHE_KEY = 'lang_cache_v1';
+		const LANG_TTL = 24 * 60 * 60 * 1000; // 24hr
+
+		function readLangCache() {
+			try {
+				const raw = localStorage.getItem(LANG_CACHE_KEY);
+				if (!raw) return {};
+				const parsed = JSON.parse(raw);
+				if (!parsed || (Date.now() - parsed.fetchedAt) > LANG_TTL) return {};
+				return parsed.repos || {};
+			} catch { return {}; }
+		}
+
+		function writeLangCache(cache) {
+			try {
+				localStorage.setItem(LANG_CACHE_KEY, JSON.stringify({
+					fetchedAt: Date.now(),
+					repos: cache
+				}));
+			} catch { /* ignore */ }
+		}
+
+		async function fetchLanguages(repo, cache) {
+			if (cache[repo]) return cache[repo];
+			try {
+				const res = await fetch(`https://api.github.com/repos/${repo}/languages`);
+				if (!res.ok) return null;
+				const data = await res.json();
+				cache[repo] = data;
+				return data;
+			} catch { return null; }
+		}
+
+		function mergeLanguages(a, b) {
+			if (!a) return b;
+			if (!b) return a;
+			const merged = { ...a };
+			for (const [k, v] of Object.entries(b)) {
+				merged[k] = (merged[k] || 0) + v;
+			}
+			return merged;
+		}
+
+		function renderLangs(card, langs) {
+			const bar = card.querySelector('[data-langs]');
+			const group = card.querySelector('[data-lang-group]');
+			if (!langs || Object.keys(langs).length === 0) {
+				if (bar) bar.remove();
+				if (group) group.innerHTML = '<span class="lang-item" style="color:rgba(26,16,8,0.3)">// —</span>';
+				return;
+			}
+
+			const total = Object.values(langs).reduce((sum, v) => sum + v, 0);
+			const entries = Object.entries(langs)
+				.map(([name, bytes]) => ({ name, bytes, pct: (bytes / total) * 100 }))
+				.sort((a, b) => b.bytes - a.bytes);
+
+			// Bar
+			if (bar) {
+				bar.innerHTML = entries.map((e, i) => {
+					const color = LANG_COLORS[e.name] || LANG_FALLBACK;
+					return `<span class="lang-bar-segment" style="width:${e.pct}%; background:${color}; animation-delay:${i * 60}ms"></span>`;
+				}).join('');
+			}
+
+			// Dots + labels (top 4 only to keep it clean)
+			if (group) {
+				const shown = entries.slice(0, 4);
+				group.innerHTML = shown.map(e => {
+					const color = LANG_COLORS[e.name] || LANG_FALLBACK;
+					return `
+						<span class="lang-item">
+							<span class="lang-dot" style="background:${color}"></span>
+							${GH.escapeHtml(e.name)}
+							<span class="lang-pct">${e.pct.toFixed(1)}%</span>
+						</span>
+					`;
+				}).join('');
+			}
+		}
+
+		async function hydrateCards() {
+			const cards = document.querySelectorAll('.project-card[data-repo]');
+			const cache = readLangCache();
+
+			await Promise.all(Array.from(cards).map(async (card) => {
+				const primary = card.getAttribute('data-repo');
+				const secondary = card.getAttribute('data-secondary-repo');
+				const a = await fetchLanguages(primary, cache);
+				const b = secondary ? await fetchLanguages(secondary, cache) : null;
+				const merged = mergeLanguages(a, b);
+				renderLangs(card, merged);
+			}));
+
+			writeLangCache(cache);
+		}
+
+		/* --- kickoff ---------------------------------------------------- */
+		fetchVersion('fieldopt/FieldOpt', 'v-fieldopt');
+		fetchVersion('zblauser/hako', 'v-hako');
+		fetchVersion('zblauser/LoMux', 'v-lomux');
+		fetchVersion('zblauser/cicada', 'v-cicada');
+		fetchVersion('zblauser/sigil', 'v-sigil');
+		hydrateCards();
+		Site.injectNav(); Site.injectFooter();
+	</script>
 </body>
 </html>
