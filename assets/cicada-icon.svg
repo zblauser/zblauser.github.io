@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" fill="#1a1008"/>
+  <!-- antennae -->
+  <line x1="228" y1="112" x2="156" y2="44" stroke="#f2ece0" stroke-width="22" stroke-linecap="square"/>
+  <line x1="284" y1="112" x2="356" y2="44" stroke="#f2ece0" stroke-width="22" stroke-linecap="square"/>
+  <!-- head -->
+  <ellipse cx="256" cy="152" rx="48" ry="38" fill="none" stroke="#f2ece0" stroke-width="22"/>
+  <!-- body -->
+  <ellipse cx="256" cy="316" rx="58" ry="116" fill="none" stroke="#f2ece0" stroke-width="22"/>
+  <!-- body segments -->
+  <line x1="206" y1="264" x2="306" y2="264" stroke="#f2ece0" stroke-width="14"/>
+  <line x1="200" y1="316" x2="312" y2="316" stroke="#f2ece0" stroke-width="14"/>
+  <line x1="206" y1="368" x2="306" y2="368" stroke="#f2ece0" stroke-width="14"/>
+  <!-- left wing -->
+  <path d="M 202 228 L 76 196 L 78 384 L 202 360" fill="none" stroke="#f2ece0" stroke-width="20" stroke-linejoin="miter" stroke-linecap="square"/>
+  <!-- right wing -->
+  <path d="M 310 228 L 436 196 L 434 384 L 310 360" fill="none" stroke="#f2ece0" stroke-width="20" stroke-linejoin="miter" stroke-linecap="square"/>
+</svg>

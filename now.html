@@ -35,14 +35,14 @@
 			<h2>// listening</h2>
 			<div class="listening-playlist">
 				<iframe
-					src="https://www.youtube.com/embed/videoseries?list=PLACEHOLDER_PLAYLIST_ID"
-					title="listening playlist"
+					src="https://www.youtube.com/embed/videoseries?list=PL5dHkwST8onTOMF_hptp63QbmKeWTyMRv"
+					title="listening"
 					frameborder="0"
 					allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
 					allowfullscreen
 					loading="lazy"></iframe>
 			</div>
-			<a href="https://www.youtube.com/@zblauser" class="now-link" target="_blank">youtube →</a>
+			<a href="https://www.youtube.com/@parhelicsquare" class="now-link" target="_blank">youtube →</a>
 		</section>
 
 		<!-- PRESENCE — where i am on the internet -->
@@ -74,10 +74,18 @@
 					</svg>
 					<span class="presence-label">dev.to</span>
 				</a>
+
+				<a href="https://news.ycombinator.com/user?id=selectedambient" class="presence-item" target="_blank" rel="noopener">
+					<!-- HN "Y" -->
+					<svg class="presence-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+						<rect width="24" height="24" rx="2" fill="currentColor" opacity="0.15"/>
+						<text x="12" y="17" font-family="'Courier New', monospace" font-size="14" font-weight="900" text-anchor="middle" fill="currentColor">Y</text>
+					</svg>
+					<span class="presence-label">hacker news</span>
+				</a>
 			</div>
 		</section>
 
-		<p class="now-updated">// last updated April 2026 — Tampa, FL</p>
 	</div>
 
 	<script src="gh.js"></script>
@@ -92,25 +100,45 @@
 				return;
 			}
 
-			// Sort newest first, take top 5
 			const sorted = [...notes].sort((a, b) => {
 				const da = a.date ? new Date(a.date) : 0;
 				const db = b.date ? new Date(b.date) : 0;
 				return db - da;
-			}).slice(0, 5);
+			});
 
-			host.innerHTML = sorted.map(n => {
+			const SHOW_LIMIT = 3;
+			host.innerHTML = sorted.map((n, i) => {
 				const d = n.date ? new Date(n.date) : null;
 				const dateLabel = d
 					? d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
 					: '--';
+				const cls = i >= SHOW_LIMIT ? ' transmission-hidden' : '';
 				return `
-					<div class="transmission-item">
+					<div class="transmission-item${cls}">
 						<span class="transmission-date">${GH.escapeHtml(dateLabel)}</span>
 						<span class="transmission-text">${GH.escapeHtml(n.text || '')}</span>
 					</div>
 				`;
 			}).join('');
+
+			if (sorted.length > SHOW_LIMIT) {
+				const btn = document.createElement('button');
+				btn.className = 'transmission-more';
+				btn.textContent = `// ${sorted.length - SHOW_LIMIT} more`;
+				btn.addEventListener('click', function () {
+					const hidden = host.querySelectorAll('.transmission-hidden');
+					if (hidden.length > 0) {
+						hidden.forEach(el => el.classList.remove('transmission-hidden'));
+						this.textContent = '// show less';
+					} else {
+						host.querySelectorAll('.transmission-item').forEach((el, i) => {
+							if (i >= SHOW_LIMIT) el.classList.add('transmission-hidden');
+						});
+						this.textContent = `// ${sorted.length - SHOW_LIMIT} more`;
+					}
+				});
+				host.appendChild(btn);
+			}
 		}
 
 		renderTransmissions();

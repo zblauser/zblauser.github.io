@@ -1,14 +1,7 @@
 [
-	{
-		"date": "2026-04-16",
-		"text": "site rebuilt. github activity now runs off a single events call, cached for an hour. rate limits finally not an issue."
-	},
-	{
-		"date": "2026-04-14",
-		"text": "thinking about how much of a codebase you can hold in your head vs how much you can trust lsp to hold for you. there is a limit on both ends."
-	},
-	{
-		"date": "2026-04-10",
-		"text": "hako feels close to being the editor i actually want. the ai panel is the last big piece."
-	}
+	{"date": "2026-05-13", "text": "the line between tool and crutch is discipline. the consequences of confusing them tend to be permanent."},
+	{"date": "2026-05-12", "text": "4k looks better on a crt."},
+	{"date": "2026-05-10", "text": "the enshittification has already started. just moving at a frequency most people aren't tuned to."},
+	{"date": "2026-05-09", "text": "boards of canada and squarepusher in the same year. what year is this?"},
+	{"date": "2026-05-08", "text": "a 4d object casts a 3d shadow."}
 ]

@@ -18,7 +18,7 @@
 		</div>
 
 		<div class="activity-feed">
-			<h3>// recent activity</h3>
+			<h3>// latest releases</h3>
 			<ul class="activity-list" id="activity-list">
 				<li class="activity-loading">fetching commits...</li>
 			</ul>
@@ -39,23 +39,18 @@
 	<script>
 		async function renderActivity() {
 			const list = document.getElementById('activity-list');
-			const { events, error } = await GH.fetchEvents();
+			const { releases } = await GH.fetchReleases();
 
-			if (error && events.length === 0) {
-				list.innerHTML = '<li class="activity-item"><span class="message">// activity unavailable</span></li>';
-				return;
-			}
-			if (events.length === 0) {
-				list.innerHTML = '<li class="activity-item"><span class="message">// no recent activity</span></li>';
+			if (!releases || releases.length === 0) {
+				list.innerHTML = '<li class="activity-item"><span class="message">// no releases yet</span></li>';
 				return;
 			}
 
-			const top = events.slice(0, 7);
-			list.innerHTML = top.map(item => `
+			list.innerHTML = releases.map(r => `
 				<li class="activity-item">
-					<span class="repo">${GH.escapeHtml(item.repo)}</span>
-					<span class="message">${GH.escapeHtml(GH.truncate(item.message, 55))}</span>
-					<span class="time">${GH.timeAgo(item.time)}</span>
+					<span class="repo">${GH.escapeHtml(r.repo)}</span>
+					<span class="message"><a href="${r.url}" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(26,16,8,0.2)">${GH.escapeHtml(r.tag)}</a></span>
+					<span class="time">${GH.timeAgo(r.time)}</span>
 				</li>
 			`).join('');
 		}

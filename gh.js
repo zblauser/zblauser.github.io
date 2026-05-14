@@ -15,13 +15,28 @@
 
 	// All repos to surface across the site
 	const REPOS = [
-		{ full: 'fieldopt/FieldOpt', display: 'FieldOpt' },
-		{ full: 'zblauser/hako',     display: 'hako' },
+		{ full: 'sys-ae/fieldopt',   display: 'FieldOpt' },
+		{ full: 'mithraeums/hako',   display: 'hako' },
 		{ full: 'zblauser/LoMux',    display: 'LoMux' },
-		{ full: 'zblauser/cicada',   display: 'cicada' },
-		{ full: 'zblauser/tymbal',   display: 'tymbal' },
-		{ full: 'zblauser/sigil',    display: 'sigil' }
+		{ full: 'zblauser/cicada',           display: 'cicada' },
+		{ full: 'zblauser/tymbal',           display: 'tymbal' },
+		{ full: 'vim-nvim-plugins/sigil',    display: 'sigil' },
+		{ full: 'vim-nvim-plugins/vibe',     display: 'vibe' },
+		{ full: 'mithraeums/hakoCLAW',       display: 'hakoCLAW' }
 	];
+
+	const RELEASE_REPOS = [
+		{ full: 'mithraeums/hako',         display: 'hako' },
+		{ full: 'mithraeums/hakoCLAW',     display: 'hakoCLAW' },
+		{ full: 'zblauser/LoMux',          display: 'LoMux' },
+		{ full: 'sys-ae/fieldopt',         display: 'FieldOpt' },
+		{ full: 'vim-nvim-plugins/vibe',   display: 'vibe' },
+		{ full: 'vim-nvim-plugins/sigil',  display: 'sigil' },
+		{ full: 'zblauser/cicada',         display: 'cicada' },
+	];
+
+	const RELEASE_CACHE_KEY = 'gh_releases_cache_v1';
+	const RELEASE_CACHE_TTL_MS = 6 * 60 * 60 * 1000;
 
 	function readCache() {
 		try {
@@ -182,12 +197,51 @@
 			.replace(/'/g, '&#39;');
 	}
 
+	async function fetchReleases() {
+		try {
+			const raw = localStorage.getItem(RELEASE_CACHE_KEY);
+			if (raw) {
+				const parsed = JSON.parse(raw);
+				if (parsed && (Date.now() - parsed.fetchedAt) < RELEASE_CACHE_TTL_MS)
+					return { releases: parsed.releases };
+			}
+		} catch {}
+
+		const results = await Promise.all(RELEASE_REPOS.map(async repo => {
+			try {
+				const res = await fetch(`https://api.github.com/repos/${repo.full}/releases/latest`);
+				if (!res.ok) return null;
+				const data = await res.json();
+				if (!data.tag_name) return null;
+				return {
+					repo: repo.display,
+					repoFull: repo.full,
+					tag: data.tag_name,
+					time: data.published_at,
+					url: data.html_url
+				};
+			} catch { return null; }
+		}));
+
+		const releases = results
+			.filter(Boolean)
+			.sort((a, b) => new Date(b.time) - new Date(a.time));
+
+		try {
+			localStorage.setItem(RELEASE_CACHE_KEY, JSON.stringify({ fetchedAt: Date.now(), releases }));
+		} catch {}
+
+		return { releases };
+	}
+
 	global.GH = {
 		fetchEvents,
+		fetchReleases,
 		timeAgo,
 		formatDate,
 		truncate,
 		escapeHtml,
-		REPOS
+		REPOS,
+		RELEASE_REPOS
 	};
 })(window);

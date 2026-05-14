@@ -17,22 +17,13 @@
 
 		<div class="uses-intro">
 			<p>
-				I'm picky but not precious. If a tool gets out of my way, it stays.
-				If it asks me to restructure how I think to fit its worldview, it goes.
-				Most of what I use is boring on purpose — terminals, plain text,
-				things that work the same on every machine.
-			</p>
-			<p>
-				When the existing tools have the wrong shape, I write my own.
-				Hako exists because no editor did what I wanted. Sigil exists
-				because find-and-replace is broken in a specific way nobody fixed.
-				That's the pattern.
+				If a tool gets out of the way, it stays. If it doesn't exist, I build it.
 			</p>
 		</div>
 
 		<div class="tools-graph-wrap">
 			<div class="tools-graph-header">
-				<span class="tools-graph-label">// drag nodes · scroll to zoom · drag empty space to pan</span>
+				<span class="tools-graph-label">// drag nodes · pinch or scroll to zoom · drag empty space to pan</span>
 				<span class="tools-graph-legend" id="tools-legend"></span>
 			</div>
 			<div class="tools-graph-controls">
@@ -68,7 +59,7 @@
 		const NODES = [
 			// languages
 			{ id: 'C',            cat: 'lang',   size: 10 },
-			{ id: 'Python',       cat: 'lang',   size: 10 },
+			{ id: 'Python',       cat: 'lang',   size: 7 },
 			{ id: 'Rust',         cat: 'lang',   size: 8 },
 			{ id: 'JavaScript',   cat: 'lang',   size: 8 },
 			{ id: 'Bash',         cat: 'lang',   size: 9 },
@@ -85,7 +76,8 @@
 			{ id: 'vim',          cat: 'editor', size: 8 },
 			{ id: 'tmux',         cat: 'editor', size: 7 },
 			{ id: 'Claude Code',  cat: 'editor', size: 5 },
-			{ id: 'Codex',        cat: 'editor', size: 3 },
+			{ id: 'vibe',         cat: 'editor', size: 6 },
+			{ id: 'hakoCLAW',     cat: 'ml',     size: 7 },
 
 			// os / shell
 			{ id: 'Arch Linux',   cat: 'os',     size: 9 },
@@ -147,7 +139,8 @@
 
 			// editors cluster
 			['Hako', 'Neovim'], ['Neovim', 'vim'], ['vim', 'tmux'], ['Neovim', 'tmux'],
-			['Claude Code', 'tmux'], ['Codex', 'tmux'],
+			['Claude Code', 'tmux'],
+			['vibe', 'Neovim'], ['vibe', 'vim'], ['vibe', 'Go'],
 
 			// os cluster
 			['Arch Linux', 'zsh'], ['Arch Linux', 'kitty'], ['macOS', 'zsh'],
@@ -163,6 +156,8 @@
 
 			// ml cluster
 			['Ollama', 'Hako'], ['Ollama', 'Claude API'],
+			['hakoCLAW', 'Hako'], ['hakoCLAW', 'C'], ['hakoCLAW', 'Ollama'], ['hakoCLAW', 'Claude API'],
+			['vibe', 'Ollama'], ['vibe', 'Claude API'],
 			['pandas', 'numpy'], ['PyTorch', 'Hugging Face'], ['scikit-learn', 'pandas'],
 			['Claude API', 'FastAPI'],
 
@@ -265,22 +260,23 @@
 
 		// Simulation — with a bounding force that keeps nodes on screen
 		const sim = d3.forceSimulation(nodes)
-			.force('link', d3.forceLink(links).id(d => d.id).distance(70).strength(0.4))
-			.force('charge', d3.forceManyBody().strength(-220))
-			.force('center', d3.forceCenter(0, 0))
-			.force('collide', d3.forceCollide().radius(d => radius(d) + 18))
+			.force('link', d3.forceLink(links).id(d => d.id).distance(110).strength(0.25))
+			.force('charge', d3.forceManyBody().strength(-180))
+			.force('center', d3.forceCenter(0, 0).strength(0.04))
+			.force('collide', d3.forceCollide().radius(d => radius(d) + 12).strength(0.7))
+			.alphaDecay(0.025)
 			.force('bounds', function () {
-				// Keep nodes within viewport bounds (viewBox centered at 0,0)
-				const padX = 40;
-				const padY = 40;
+				// Soft velocity nudge — avoids hard-clamp twitching on mobile
+				const padX = 60;
+				const padY = 60;
 				const halfW = viewW / 2 - padX;
 				const halfH = viewH / 2 - padY;
 				for (const n of nodes) {
 					const r = radius(n);
-					if (n.x - r < -halfW) n.x = -halfW + r;
-					if (n.x + r > halfW) n.x = halfW - r;
-					if (n.y - r < -halfH) n.y = -halfH + r;
-					if (n.y + r > halfH) n.y = halfH - r;
+					if (n.x - r < -halfW) n.vx += (-halfW + r - n.x) * 0.08;
+					if (n.x + r >  halfW) n.vx += ( halfW - r - n.x) * 0.08;
+					if (n.y - r < -halfH) n.vy += (-halfH + r - n.y) * 0.08;
+					if (n.y + r >  halfH) n.vy += ( halfH - r - n.y) * 0.08;
 				}
 			});
 

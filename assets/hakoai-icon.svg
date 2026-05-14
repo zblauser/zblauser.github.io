@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" fill="#1a1008"/>
+  <!-- edges: input to hidden -->
+  <line x1="170" y1="140" x2="213" y2="284" stroke="#f2ece0" stroke-width="10"/>
+  <line x1="170" y1="140" x2="299" y2="284" stroke="#f2ece0" stroke-width="10"/>
+  <line x1="256" y1="140" x2="213" y2="284" stroke="#f2ece0" stroke-width="10"/>
+  <line x1="256" y1="140" x2="299" y2="284" stroke="#f2ece0" stroke-width="10"/>
+  <line x1="342" y1="140" x2="213" y2="284" stroke="#f2ece0" stroke-width="10"/>
+  <line x1="342" y1="140" x2="299" y2="284" stroke="#f2ece0" stroke-width="10"/>
+  <!-- edges: hidden to output -->
+  <line x1="213" y1="284" x2="256" y2="420" stroke="#f2ece0" stroke-width="10"/>
+  <line x1="299" y1="284" x2="256" y2="420" stroke="#f2ece0" stroke-width="10"/>
+  <!-- input layer nodes -->
+  <circle cx="170" cy="140" r="30" fill="none" stroke="#f2ece0" stroke-width="20"/>
+  <circle cx="256" cy="140" r="30" fill="none" stroke="#f2ece0" stroke-width="20"/>
+  <circle cx="342" cy="140" r="30" fill="none" stroke="#f2ece0" stroke-width="20"/>
+  <!-- hidden layer nodes -->
+  <circle cx="213" cy="284" r="30" fill="none" stroke="#f2ece0" stroke-width="20"/>
+  <circle cx="299" cy="284" r="30" fill="none" stroke="#f2ece0" stroke-width="20"/>
+  <!-- output node -->
+  <circle cx="256" cy="420" r="30" fill="none" stroke="#f2ece0" stroke-width="20"/>
+</svg>

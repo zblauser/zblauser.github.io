@@ -23,14 +23,33 @@
 	<script src="gh.js"></script>
 	<script src="site.js"></script>
 	<script>
-		function groupByDate(items) {
-			const groups = {};
-			items.forEach(c => {
-				const date = new Date(c.time).toDateString();
-				if (!groups[date]) groups[date] = [];
-				groups[date].push(c);
-			});
-			return groups;
+		function getWeekStart(dateStr) {
+			const d = new Date(dateStr);
+			const day = d.getDay();
+			const diff = day === 0 ? -6 : 1 - day;
+			const mon = new Date(d);
+			mon.setDate(d.getDate() + diff);
+			mon.setHours(0, 0, 0, 0);
+			return mon;
+		}
+
+		function formatWeekRange(weekStart) {
+			const end = new Date(weekStart);
+			end.setDate(weekStart.getDate() + 6);
+			const s = weekStart.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+			const e = end.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+			return `${s} – ${e}`;
+		}
+
+		function groupByWeek(items) {
+			const map = new Map();
+			for (const item of items) {
+				const ws = getWeekStart(item.time);
+				const key = ws.toISOString();
+				if (!map.has(key)) map.set(key, { weekStart: ws, items: [] });
+				map.get(key).items.push(item);
+			}
+			return Array.from(map.values()).sort((a, b) => b.weekStart - a.weekStart);
 		}
 
 		function sourceBadge(source) {
@@ -110,22 +129,41 @@
 
 			const all = [...ghEvents, ...devItems, ...rustItems]
 				.filter(x => x.time)
-				.sort((a, b) => new Date(b.time) - new Date(a.time));
+				.sort((a, b) => new Date(b.time) - new Date(a.time))
+				.slice(0, 40);
 
 			if (all.length === 0) {
 				container.innerHTML = '<p class="log-empty">// no signal</p>';
 				return;
 			}
 
-			const grouped = groupByDate(all);
-			const html = Object.entries(grouped).map(([date, items]) => `
-				<div class="log-day">
-					<h3 class="log-date">${GH.formatDate(items[0].time)}</h3>
-					${items.map(renderEntry).join('')}
-				</div>
-			`).join('');
+			const weeks = groupByWeek(all);
+			const html = weeks.map((week, i) => {
+				const label = formatWeekRange(week.weekStart);
+				const isFirst = i === 0;
+				return `
+					<div class="log-week">
+						<button class="log-week-toggle" aria-expanded="${isFirst}">
+							<span class="log-week-label">// ${label}</span>
+							<span class="log-week-count">${week.items.length} entries</span>
+						</button>
+						<div class="log-week-body" ${isFirst ? '' : 'hidden'}>
+							${week.items.map(renderEntry).join('')}
+						</div>
+					</div>
+				`;
+			}).join('');
 
 			container.innerHTML = html;
+
+			container.querySelectorAll('.log-week-toggle').forEach(btn => {
+				btn.addEventListener('click', () => {
+					const body = btn.nextElementSibling;
+					const nowOpen = body.hidden;
+					body.hidden = !nowOpen;
+					btn.setAttribute('aria-expanded', nowOpen);
+				});
+			});
 		}
 
 		renderLog();
