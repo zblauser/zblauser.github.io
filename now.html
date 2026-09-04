@@ -3,146 +3,186 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Now — Zachary Blauser</title>
+	<title>ZB-1 · Operating Conditions</title>
+	<meta name="description" content="What Zachary Blauser is working on, listening to, and where to find him.">
+	<link rel="canonical" href="https://zblauser.dev/now.html">
+	<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+	<link rel="icon" href="assets/favicon-32.png" sizes="32x32">
+	<link rel="apple-touch-icon" href="assets/favicon-180.png">
+	<meta name="theme-color" content="#000000">
+	<meta property="og:type" content="website">
+	<meta property="og:site_name" content="Zachary Blauser">
+	<meta property="og:title" content="ZB-1 · Operating Conditions">
+	<meta property="og:description" content="What Zachary Blauser is working on, listening to, and where to find him.">
+	<meta property="og:url" content="https://zblauser.dev/now.html">
+	<meta property="og:image" content="https://zblauser.dev/assets/og.png">
+	<meta property="og:image:width" content="1200">
+	<meta property="og:image:height" content="630">
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:creator" content="@parhelicsquare">
+	<meta name="twitter:title" content="ZB-1 · Operating Conditions">
+	<meta name="twitter:description" content="What Zachary Blauser is working on, listening to, and where to find him.">
+	<meta name="twitter:image" content="https://zblauser.dev/assets/og.png">
 	<link rel="stylesheet" href="style.css">
 </head>
-<body class="inner-page">
-	<nav class="top-nav"></nav>
-
-	<div class="inner-container">
-		<header class="inner-header">
-			<h1>NOW</h1>
-			<span class="header-sub">// current signal</span>
+<body>
+	<div class="sheet">
+		<header class="title-block">
+			<div class="tb-name">
+				<h1>ZACHARY BLAUSER</h1>
+				<span class="tb-part">ZB-1</span>
+				<span class="tb-fn">SYSTEMS PROGRAMMER</span>
+			</div>
+			<div class="tb-cells">
+				<div class="tb-cell"><span class="lbl">Document</span><span class="val">ZB-1-DS</span></div>
+				<div class="tb-cell"><span class="lbl">Sheet</span><span class="val">NOW</span></div>
+			</div>
 		</header>
+		<nav class="toc"><a href="index.html"><span class="sec">—</span>COVER</a><a href="projects.html"><span class="sec">2.0</span>PROJECTS</a><a href="about.html"><span class="sec">3.0</span>ABOUT</a><a href="now.html" aria-current="page"><span class="sec">4.0</span>NOW</a><a href="log.html"><span class="sec">5.0</span>LOG</a><a href="uses.html"><span class="sec">6.0</span>TOOLS</a><a href="mailto:zacharymblauser@gmail.com" class="contact-cta"><span class="sec">7.0</span>CONTACT</a></nav>
 
-		<!-- TRANSMISSIONS — one-liner notes, edit notes.json from anywhere -->
-		<section class="now-section">
-			<h2>// transmissions</h2>
-			<div class="transmissions" id="transmissions">
-				<div class="transmission-item">
-					<span class="transmission-date">--</span>
-					<span class="transmission-text" style="color:rgba(26,16,8,0.3);animation:blink 1.2s step-end infinite">fetching...</span>
+		<main class="doc-body">
+
+			<div class="tick-rule" data-label="SECTION 4"></div>
+
+			<section class="section">
+				<h2>
+					<span class="sec-no">4.0</span> Operating Conditions
+					<span class="sec-note">Conditions as of the issue date above</span>
+				</h2>
+				<div class="prose">
+					<p>
+						Current state, not a permanent specification. Everything below drifts.
+					</p>
 				</div>
-			</div>
-		</section>
+			</section>
 
-		<!-- LISTENING — YouTube playlist embed -->
-		<!--
-			TO SET THE PLAYLIST: replace PLAYLIST_ID below with your real playlist ID.
-			In a playlist URL like youtube.com/playlist?list=PLabc123... the ID is the part after list=
-		-->
-		<section class="now-section">
-			<h2>// listening</h2>
-			<div class="listening-playlist">
-				<iframe
-					src="https://www.youtube.com/embed/videoseries?list=PL5dHkwST8onTOMF_hptp63QbmKeWTyMRv"
-					title="listening"
-					frameborder="0"
-					allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-					allowfullscreen
-					loading="lazy"></iframe>
-			</div>
-			<a href="https://www.youtube.com/@parhelicsquare" class="now-link" target="_blank">youtube →</a>
-		</section>
+			<section class="section">
+				<h2><span class="sec-no">4.1</span> Transmissions</h2>
+				<ul class="notes-list" id="transmissions">
+					<li><span class="note-date">—</span><span class="note-text"><span class="data-na">READING</span></span></li>
+				</ul>
+				<p class="table-note" id="transmissions-note"></p>
+			</section>
 
-		<!-- PRESENCE — where i am on the internet -->
-		<section class="now-section">
-			<h2>// presence</h2>
-			<div class="presence-grid">
-				<a href="https://github.com/zblauser" class="presence-item" target="_blank" rel="noopener">
-					<!-- GitHub mark -->
-					<svg class="presence-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-						<path d="M12 .5C5.65.5.5 5.65.5 12a11.5 11.5 0 0 0 7.86 10.92c.58.11.79-.25.79-.56v-2c-3.2.7-3.88-1.36-3.88-1.36-.53-1.34-1.3-1.69-1.3-1.69-1.06-.72.08-.71.08-.71 1.17.08 1.79 1.2 1.79 1.2 1.04 1.79 2.73 1.27 3.4.97.11-.75.41-1.27.74-1.56-2.56-.29-5.25-1.28-5.25-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.51-1.46.11-3.05 0 0 .97-.31 3.18 1.18A11 11 0 0 1 12 6.8c.98.004 1.97.13 2.89.39 2.21-1.49 3.17-1.18 3.17-1.18.63 1.59.24 2.76.12 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.69 5.4-5.25 5.69.42.36.79 1.08.79 2.18v3.24c0 .31.21.68.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/>
-					</svg>
-					<span class="presence-label">github</span>
-				</a>
+			<section class="section">
+				<h2>
+					<span class="sec-no">4.2</span> Listening
+					<span class="sec-note">Embed loads only on request</span>
+				</h2>
+				<div class="embed-facade" id="yt-facade">
+					<div class="embed-facade-body">
+						<span class="embed-kicker">YouTube playlist</span>
+						<span class="embed-title">Rotation</span>
+						<p class="embed-note">
+							Playing this loads an embed from youtube-nocookie.com, which is the only
+							third-party request this site can make. Nothing is fetched until you press.
+						</p>
+						<button type="button" class="embed-btn" id="yt-load">Load player →</button>
+					</div>
+				</div>
+				<p class="table-note">
+					<a href="https://www.youtube.com/@parhelicsquare" target="_blank" rel="noopener">youtube.com/@parhelicsquare →</a>
+				</p>
+			</section>
 
-				<a href="https://users.rust-lang.org/u/zblauser" class="presence-item" target="_blank" rel="noopener">
-					<!-- Rust gear (simplified) -->
-					<svg class="presence-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-						<circle cx="12" cy="12" r="3.5"/>
-						<path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/>
-					</svg>
-					<span class="presence-label">rust forum</span>
-				</a>
+			<section class="section">
+				<h2><span class="sec-no">4.3</span> Presence</h2>
+				<div class="table-wrap">
+					<table class="spec">
+						<thead>
+							<tr>
+								<th>Network</th>
+								<th>Handle</th>
+								<th>Function</th>
+							</tr>
+						</thead>
+						<tbody id="presence-body"></tbody>
+					</table>
+				</div>
+			</section>
 
-				<a href="https://dev.to/zblauser" class="presence-item" target="_blank" rel="noopener">
-					<!-- dev.to "{ }" -->
-					<svg class="presence-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-						<path d="M8 4C6 4 5 5 5 7v3c0 1-.5 2-2 2 1.5 0 2 1 2 2v3c0 2 1 3 3 3"/>
-						<path d="M16 4c2 0 3 1 3 3v3c0 1 .5 2 2 2-1.5 0-2 1-2 2v3c0 2-1 3-3 3"/>
-					</svg>
-					<span class="presence-label">dev.to</span>
-				</a>
+			<div class="barcode-row" data-barcode></div>
 
-				<a href="https://news.ycombinator.com/user?id=selectedambient" class="presence-item" target="_blank" rel="noopener">
-					<!-- HN "Y" -->
-					<svg class="presence-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-						<rect width="24" height="24" rx="2" fill="currentColor" opacity="0.15"/>
-						<text x="12" y="17" font-family="'Courier New', monospace" font-size="14" font-weight="900" text-anchor="middle" fill="currentColor">Y</text>
-					</svg>
-					<span class="presence-label">hacker news</span>
-				</a>
-			</div>
-		</section>
-
+		</main>
 	</div>
 
 	<script src="gh.js"></script>
 	<script src="site.js"></script>
 	<script>
-		async function renderTransmissions() {
+		Site.initDoc({ title: 'NOW' });
+
+		// --- 4.1 transmissions ------------------------------------------
+		(async function renderTransmissions() {
 			const host = document.getElementById('transmissions');
+			const note = document.getElementById('transmissions-note');
 			const notes = await Site.fetchNotes('notes.json');
 
 			if (!notes || notes.length === 0) {
-				host.innerHTML = '<div class="transmission-item"><span class="transmission-date">--</span><span class="transmission-text" style="color:rgba(26,16,8,0.35)">// no transmissions yet</span></div>';
+				host.innerHTML = '<li><span class="note-date">—</span><span class="note-text"><span class="data-na">NO ENTRIES</span></span></li>';
 				return;
 			}
 
-			const sorted = [...notes].sort((a, b) => {
-				const da = a.date ? new Date(a.date) : 0;
-				const db = b.date ? new Date(b.date) : 0;
-				return db - da;
-			});
+			const sorted = [...notes].sort((a, b) => new Date(b.date || 0) - new Date(a.date || 0));
+			const SHOW = 5;
 
-			const SHOW_LIMIT = 3;
-			host.innerHTML = sorted.map((n, i) => {
-				const d = n.date ? new Date(n.date) : null;
-				const dateLabel = d
-					? d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
-					: '--';
-				const cls = i >= SHOW_LIMIT ? ' transmission-hidden' : '';
-				return `
-					<div class="transmission-item${cls}">
-						<span class="transmission-date">${GH.escapeHtml(dateLabel)}</span>
-						<span class="transmission-text">${GH.escapeHtml(n.text || '')}</span>
-					</div>
-				`;
-			}).join('');
-
-			if (sorted.length > SHOW_LIMIT) {
-				const btn = document.createElement('button');
-				btn.className = 'transmission-more';
-				btn.textContent = `// ${sorted.length - SHOW_LIMIT} more`;
-				btn.addEventListener('click', function () {
-					const hidden = host.querySelectorAll('.transmission-hidden');
-					if (hidden.length > 0) {
-						hidden.forEach(el => el.classList.remove('transmission-hidden'));
-						this.textContent = '// show less';
-					} else {
-						host.querySelectorAll('.transmission-item').forEach((el, i) => {
-							if (i >= SHOW_LIMIT) el.classList.add('transmission-hidden');
-						});
-						this.textContent = `// ${sorted.length - SHOW_LIMIT} more`;
-					}
-				});
-				host.appendChild(btn);
+			function paint(all) {
+				const rows = all ? sorted : sorted.slice(0, SHOW);
+				host.innerHTML = rows.map(n => `
+					<li>
+						<span class="note-date">${GH.escapeHtml(n.date || '—')}</span>
+						<span class="note-text">${GH.escapeHtml(n.text || '')}</span>
+					</li>`).join('');
 			}
-		}
 
-		renderTransmissions();
-		Site.injectNav(); Site.injectFooter();
+			paint(false);
+
+			if (sorted.length > SHOW) {
+				note.innerHTML = `<button type="button" class="link-btn" id="more-notes">Show all ${sorted.length} entries</button>`;
+				let open = false;
+				document.getElementById('more-notes').addEventListener('click', function () {
+					open = !open;
+					paint(open);
+					this.textContent = open ? 'Show fewer' : `Show all ${sorted.length} entries`;
+				});
+			}
+		})();
+
+		// --- 4.2 listening: click-to-load facade -------------------------
+		document.getElementById('yt-load').addEventListener('click', function () {
+			const facade = document.getElementById('yt-facade');
+			const frame = document.createElement('iframe');
+			frame.src = 'https://www.youtube-nocookie.com/embed/videoseries?list=PL5dHkwST8onTOMF_hptp63QbmKeWTyMRv&autoplay=1';
+			frame.title = 'Listening';
+			frame.loading = 'lazy';
+			frame.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+			frame.allowFullscreen = true;
+			frame.className = 'embed-frame';
+			facade.replaceWith(frame);
+		});
+
+		// --- 4.3 presence ------------------------------------------------
+		(function renderPresence() {
+			const D = Site.DOC;
+			const rows = [
+				{ net: 'GitHub',      handle: 'zblauser',          url: D.github,                                                   fn: 'Source. Everything ships here first.' },
+				{ net: 'dev.to',      handle: 'zblauser',          url: 'https://dev.to/zblauser',                                  fn: 'Long-form writing.' },
+				{ net: 'Hacker News', handle: 'selectedambient',   url: D.hn,                                                       fn: 'Reading, occasionally arguing.' },
+				D.ziggit
+					? { net: 'Ziggit', handle: D.ziggit, url: 'https://ziggit.dev/u/' + D.ziggit, fn: 'Zig community forum.' }
+					: null,
+				D.x
+					? { net: 'X', handle: D.x.split('/').pop(), url: D.x, fn: 'Short posts.' }
+					: null,
+				{ net: 'YouTube',     handle: 'parhelicsquare',    url: 'https://www.youtube.com/@parhelicsquare',                  fn: 'Music.' }
+			].filter(Boolean);
+
+			document.getElementById('presence-body').innerHTML = rows.map(r => `
+				<tr>
+					<td class="id">${GH.escapeHtml(r.net)}</td>
+					<td><a href="${GH.escapeHtml(r.url)}" target="_blank" rel="noopener">${GH.escapeHtml(r.handle)}</a></td>
+					<td>${GH.escapeHtml(r.fn)}</td>
+				</tr>`).join('');
+		})();
 	</script>
 </body>
 </html>

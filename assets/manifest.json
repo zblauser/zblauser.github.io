@@ -1,0 +1,46 @@
+{
+  "org:mithraeums": {
+    "file": "assets/orgs/mithraeums.png",
+    "sha": "15105"
+  },
+  "org:sys-ae": {
+    "file": "assets/orgs/sys-ae.png",
+    "sha": "12358"
+  },
+  "org:vim-nvim-plugins": {
+    "file": "assets/orgs/vim-nvim-plugins.png",
+    "sha": "15226"
+  },
+  "repo:mithraeums/hako-code": {
+    "file": "assets/repos/mithraeums-hako-code.png",
+    "sha": "0b2776dea3c1f7d9c80899cc9ea2bb9aee493444"
+  },
+  "repo:mithraeums/hako-edit": {
+    "file": "assets/repos/mithraeums-hako-edit.png",
+    "sha": "2fd51c7c3fef39f2b57eaf306b46d81441500994"
+  },
+  "repo:mithraeums/hako-studio": {
+    "file": "assets/repos/mithraeums-hako-studio.svg",
+    "sha": "e26149e5c86741f8678efb08f62c4e9f5e677406"
+  },
+  "repo:mithraeums/mithraeums.github.io": {
+    "file": "assets/repos/mithraeums-mithraeums.github.io.svg",
+    "sha": "c450e0821ea0521fe17b4b1f2a8f8eb470784b4b"
+  },
+  "repo:sys-ae/fieldopt.github.io": {
+    "file": "assets/repos/sys-ae-fieldopt.github.io.png",
+    "sha": "d769227523ec9697e4dd676371c7a79cfdf5e9e5"
+  },
+  "repo:zblauser/LoMux": {
+    "file": "assets/repos/zblauser-lomux.png",
+    "sha": "4527a649f23b1648bf2bbc01d62f30b196d97fd4"
+  },
+  "repo:zblauser/cicada": {
+    "file": "assets/repos/zblauser-cicada.jpg",
+    "sha": "d79a17bb474568601effe4483a5a724011bbc28c"
+  },
+  "repo:zblauser/tymbal": {
+    "file": "assets/repos/zblauser-tymbal.jpg",
+    "sha": "357b1412229ddb5dca24ff631b078ed8cb3fa7e2"
+  }
+}

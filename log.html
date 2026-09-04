@@ -3,171 +3,254 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Log — Zachary Blauser</title>
+	<title>ZB-1 · Revision History</title>
+	<meta name="description" content="Full change record: commits across every repository, plus writing and forum activity.">
+	<link rel="canonical" href="https://zblauser.dev/log.html">
+	<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+	<link rel="icon" href="assets/favicon-32.png" sizes="32x32">
+	<link rel="apple-touch-icon" href="assets/favicon-180.png">
+	<meta name="theme-color" content="#000000">
+	<meta property="og:type" content="website">
+	<meta property="og:site_name" content="Zachary Blauser">
+	<meta property="og:title" content="ZB-1 · Revision History">
+	<meta property="og:description" content="Full change record: commits across every repository, plus writing and forum activity.">
+	<meta property="og:url" content="https://zblauser.dev/log.html">
+	<meta property="og:image" content="https://zblauser.dev/assets/og.png">
+	<meta property="og:image:width" content="1200">
+	<meta property="og:image:height" content="630">
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:creator" content="@parhelicsquare">
+	<meta name="twitter:title" content="ZB-1 · Revision History">
+	<meta name="twitter:description" content="Full change record: commits across every repository, plus writing and forum activity.">
+	<meta name="twitter:image" content="https://zblauser.dev/assets/og.png">
 	<link rel="stylesheet" href="style.css">
 </head>
-<body class="inner-page">
-	<nav class="top-nav"></nav>
-
-	<div class="inner-container">
-		<header class="inner-header">
-			<h1>LOG</h1>
-			<span class="header-sub">// activity across the wire</span>
+<body>
+	<div class="sheet">
+		<header class="title-block">
+			<div class="tb-name">
+				<h1>ZACHARY BLAUSER</h1>
+				<span class="tb-part">ZB-1</span>
+				<span class="tb-fn">SYSTEMS PROGRAMMER</span>
+			</div>
+			<div class="tb-cells">
+				<div class="tb-cell"><span class="lbl">Document</span><span class="val">ZB-1-DS</span></div>
+				<div class="tb-cell"><span class="lbl">Sheet</span><span class="val">LOG</span></div>
+			</div>
 		</header>
+		<nav class="toc"><a href="index.html"><span class="sec">—</span>COVER</a><a href="projects.html"><span class="sec">2.0</span>PROJECTS</a><a href="about.html"><span class="sec">3.0</span>ABOUT</a><a href="now.html"><span class="sec">4.0</span>NOW</a><a href="log.html" aria-current="page"><span class="sec">5.0</span>LOG</a><a href="uses.html"><span class="sec">6.0</span>TOOLS</a><a href="mailto:zacharymblauser@gmail.com" class="contact-cta"><span class="sec">7.0</span>CONTACT</a></nav>
 
-		<div id="log-container">
-			<p class="log-loading">// fetching signals...</p>
-		</div>
+		<main class="doc-body">
+
+			<section class="section">
+				<h2>
+					<span class="sec-no">5.0</span> Revision History
+					<span class="sec-note">Live · GitHub, dev.to, Ziggit, Hacker News, Rust forum</span>
+				</h2>
+				<div class="prose">
+					<p>
+						Every change, newest first, merged across sources. Commits come from the
+						active repositories listed in <a href="projects.html">Section 2.0</a>.
+					</p>
+				</div>
+
+				<div class="tick-rule" data-label="ENTRIES"></div>
+
+				<div class="filter-row" id="filters"></div>
+
+				<div class="table-wrap">
+					<table class="spec">
+						<thead>
+							<tr>
+								<th>Date</th>
+								<th>Source</th>
+								<th>Part</th>
+								<th>Ref</th>
+								<th>Entry</th>
+							</tr>
+						</thead>
+						<tbody id="log-body">
+							<tr><td colspan="5"><span class="data-na">READING</span></td></tr>
+						</tbody>
+					</table>
+				</div>
+				<p class="table-note" id="log-note"></p>
+			</section>
+
+		</main>
 	</div>
 
 	<script src="gh.js"></script>
 	<script src="site.js"></script>
 	<script>
-		function getWeekStart(dateStr) {
-			const d = new Date(dateStr);
-			const day = d.getDay();
-			const diff = day === 0 ? -6 : 1 - day;
-			const mon = new Date(d);
-			mon.setDate(d.getDate() + diff);
-			mon.setHours(0, 0, 0, 0);
-			return mon;
-		}
+		Site.initDoc({ title: 'LOG' });
 
-		function formatWeekRange(weekStart) {
-			const end = new Date(weekStart);
-			end.setDate(weekStart.getDate() + 6);
-			const s = weekStart.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-			const e = end.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-			return `${s} – ${e}`;
-		}
+		const SOURCES = {
+			github: 'GitHub',
+			'dev.to': 'dev.to',
+			ziggit: 'Ziggit',
+			hn: 'Hacker News',
+			rust: 'Rust forum'
+		};
 
-		function groupByWeek(items) {
-			const map = new Map();
-			for (const item of items) {
-				const ws = getWeekStart(item.time);
-				const key = ws.toISOString();
-				if (!map.has(key)) map.set(key, { weekStart: ws, items: [] });
-				map.get(key).items.push(item);
-			}
-			return Array.from(map.values()).sort((a, b) => b.weekStart - a.weekStart);
-		}
+		// These four always get a tab, even at zero. An empty tab says the
+		// source was asked and answered with nothing; a missing tab looks
+		// like the source was never wired up at all.
+		const ALWAYS_SHOWN = ['github', 'dev.to', 'ziggit', 'hn', 'rust'];
 
-		function sourceBadge(source) {
-			const cls = source === 'dev.to' ? 'src-dev'
-				: source === 'rust' ? 'src-rust'
-				: 'src-gh';
-			const label = source === 'dev.to' ? 'dev.to'
-				: source === 'rust' ? 'rust'
-				: 'github';
-			return `<span class="log-source ${cls}">${label}</span>`;
-		}
+		let ENTRIES = [];
+		let ACTIVE = 'all';
 
-		function renderEntry(c) {
-			const repoChunk = c.source === 'github'
-				? `<a href="${c.repoUrl}" class="log-repo" target="_blank" rel="noopener">${GH.escapeHtml(c.repo)}</a>`
-				: `<span class="log-repo">${GH.escapeHtml(c.repo || c.source)}</span>`;
+		// 100 rows a page. A revision history is read from the top, so the
+		// pager stays under the table and the filter row is what we scroll
+		// back to when the page changes.
+		const PAGE_SIZE = 100;
+		let PAGE = 0;
 
-			const shaChunk = c.sha
-				? `<a href="${c.url}" class="log-sha" target="_blank" rel="noopener">${GH.escapeHtml(c.sha)}</a>`
-				: '';
+		function render() {
+			const body = document.getElementById('log-body');
+			const note = document.getElementById('log-note');
 
-			// For dev.to, the title is clickable; for github, we link the message to the commit
-			let messageHtml;
-			if (c.source === 'dev.to') {
-				messageHtml = `<a href="${c.url}" target="_blank" rel="noopener">${GH.escapeHtml(c.title || c.message)}</a>`;
-			} else if (c.url) {
-				messageHtml = `<a href="${c.url}" target="_blank" rel="noopener">${GH.escapeHtml(c.message)}</a>`;
-			} else {
-				messageHtml = GH.escapeHtml(c.message);
-			}
+			const rows = ACTIVE === 'all'
+				? ENTRIES
+				: ENTRIES.filter(e => e.source === ACTIVE);
 
-			return `
-				<div class="log-entry">
-					<div class="log-entry-header">
-						${sourceBadge(c.source)}
-						${repoChunk}
-						${shaChunk}
-					</div>
-					<p class="log-message">${messageHtml}</p>
-					${c.body ? `<p class="log-body">${GH.escapeHtml(c.body)}</p>` : ''}
-				</div>
-			`;
-		}
-
-		async function renderLog() {
-			const container = document.getElementById('log-container');
-
-			const [ghResult, devArticles, rustPosts] = await Promise.all([
-				GH.fetchEvents(),
-				Site.fetchDevtoArticles('zblauser'),
-				Site.fetchRustForumPosts('zblauser')
-			]);
-
-			const ghEvents = ghResult.events || [];
-			const devItems = (devArticles || []).map(a => ({
-				source: 'dev.to',
-				repo: 'dev.to',
-				repoUrl: 'https://dev.to/zblauser',
-				sha: '',
-				message: a.title,
-				title: a.title,
-				body: '',
-				time: a.time,
-				url: a.url
-			}));
-			const rustItems = (rustPosts || []).map(p => ({
-				source: 'rust',
-				repo: 'rust forum',
-				repoUrl: 'https://users.rust-lang.org/u/zblauser',
-				sha: '',
-				message: p.kind ? `${p.kind}: ${p.title}` : p.title,
-				title: p.title,
-				body: '',
-				time: p.time,
-				url: p.url
-			}));
-
-			const all = [...ghEvents, ...devItems, ...rustItems]
-				.filter(x => x.time)
-				.sort((a, b) => new Date(b.time) - new Date(a.time))
-				.slice(0, 40);
-
-			if (all.length === 0) {
-				container.innerHTML = '<p class="log-empty">// no signal</p>';
+			if (!rows.length) {
+				body.innerHTML = '<tr><td colspan="5">' + Site.fault(
+					ACTIVE === 'all'
+						? 'No entries could be read from any source, and no cached copy exists on this device.'
+						: 'No entries from this source.',
+					'SOURCES: api.github.com · dev.to · ziggit.dev · hn.algolia.com'
+				) + '</td></tr>';
+				note.textContent = '';
 				return;
 			}
 
-			const weeks = groupByWeek(all);
-			const html = weeks.map((week, i) => {
-				const label = formatWeekRange(week.weekStart);
-				const isFirst = i === 0;
-				return `
-					<div class="log-week">
-						<button class="log-week-toggle" aria-expanded="${isFirst}">
-							<span class="log-week-label">// ${label}</span>
-							<span class="log-week-count">${week.items.length} entries</span>
-						</button>
-						<div class="log-week-body" ${isFirst ? '' : 'hidden'}>
-							${week.items.map(renderEntry).join('')}
-						</div>
-					</div>
-				`;
-			}).join('');
+			const pages = Math.max(1, Math.ceil(rows.length / PAGE_SIZE));
+			PAGE = Math.min(Math.max(PAGE, 0), pages - 1);
+			const from = PAGE * PAGE_SIZE;
+			const shown = rows.slice(from, from + PAGE_SIZE);
 
-			container.innerHTML = html;
+			body.innerHTML = shown.map(e => `
+				<tr>
+					<td class="num">${GH.isoDate(e.time)}</td>
+					<td class="unit">${GH.escapeHtml(SOURCES[e.source] || e.source)}</td>
+					<td class="id">${e.repoUrl
+						? `<a href="${GH.escapeHtml(e.repoUrl)}" target="_blank" rel="noopener">${GH.escapeHtml(e.repo)}</a>`
+						: GH.escapeHtml(e.repo)}</td>
+					<td class="id">${e.sha
+						? `<a href="${GH.escapeHtml(e.url)}" target="_blank" rel="noopener">${GH.escapeHtml(e.sha)}</a>`
+						: '—'}</td>
+					<td>${e.url && !e.sha
+						? `<a href="${GH.escapeHtml(e.url)}" target="_blank" rel="noopener">${GH.escapeHtml(e.message)}</a>`
+						: GH.escapeHtml(e.message)}</td>
+				</tr>`).join('');
 
-			container.querySelectorAll('.log-week-toggle').forEach(btn => {
+			if (pages === 1) {
+				note.textContent = `${rows.length} entr${rows.length === 1 ? 'y' : 'ies'}`;
+				return;
+			}
+
+			note.innerHTML =
+				`<span class="pager-label">${from + 1}&#8211;${from + shown.length}`
+				+ ` of ${rows.length} &#183; page ${PAGE + 1} of ${pages}</span>`
+				+ `<button type="button" class="link-btn pager-btn" data-step="-1"`
+				+ `${PAGE === 0 ? ' disabled' : ''}>Previous</button>`
+				+ `<button type="button" class="link-btn pager-btn" data-step="1"`
+				+ `${PAGE === pages - 1 ? ' disabled' : ''}>Next</button>`;
+
+			note.querySelectorAll('.pager-btn').forEach(btn => {
 				btn.addEventListener('click', () => {
-					const body = btn.nextElementSibling;
-					const nowOpen = body.hidden;
-					body.hidden = !nowOpen;
-					btn.setAttribute('aria-expanded', nowOpen);
+					PAGE += Number(btn.dataset.step);
+					render();
+					document.getElementById('filters').scrollIntoView({ block: 'start' });
 				});
 			});
 		}
 
-		renderLog();
-		Site.injectNav(); Site.injectFooter();
+		function renderFilters(counts) {
+			const host = document.getElementById('filters');
+			const keys = ['all', ...Object.keys(SOURCES)
+				.filter(k => ALWAYS_SHOWN.includes(k) || counts[k])];
+			host.innerHTML = keys.map(k => `
+				<button type="button" class="filter-btn${k === ACTIVE ? ' is-active' : ''}" data-src="${k}">
+					${k === 'all' ? 'All' : SOURCES[k]}
+					<span class="filter-count">${k === 'all' ? ENTRIES.length : (counts[k] || 0)}</span>
+				</button>`).join('');
+
+			host.querySelectorAll('.filter-btn').forEach(btn => {
+				btn.addEventListener('click', () => {
+					ACTIVE = btn.dataset.src;
+					PAGE = 0;
+					host.querySelectorAll('.filter-btn').forEach(b => b.classList.toggle('is-active', b === btn));
+					render();
+				});
+			});
+		}
+
+		(async function load() {
+			const [gh, devto, ziggit, hn, rust] = await Promise.all([
+				GH.fetchEvents(),
+				Site.fetchDevtoArticles('zblauser'),
+				Site.fetchForumPosts('ziggit'),
+				Site.fetchHNPosts(),
+				Site.fetchForumPosts('rust')
+			]);
+
+			const commits = (gh.events || []).map(e => ({
+				source: 'github',
+				time: e.time,
+				repo: e.repo,
+				repoUrl: e.repoUrl,
+				sha: e.sha,
+				url: e.url,
+				message: e.message
+			}));
+
+			const articles = (devto || []).map(a => ({
+				source: 'dev.to',
+				time: a.time,
+				repo: 'writing',
+				repoUrl: 'https://dev.to/zblauser',
+				sha: '',
+				url: a.url,
+				message: a.title
+			}));
+
+			const forumHome = {
+				ziggit: 'https://ziggit.dev',
+				rust: 'https://users.rust-lang.org',
+				hn: 'https://news.ycombinator.com'
+			};
+			const posts = [...(ziggit || []), ...(hn || []), ...(rust || [])].map(p => ({
+				source: p.source,
+				time: p.time,
+				repo: p.repo,
+				repoUrl: forumHome[p.source] || '',
+				sha: '',
+				url: p.url,
+				message: `${p.kind}: ${p.title}`
+			}));
+
+			ENTRIES = [...commits, ...articles, ...posts]
+				.filter(e => e.time)
+				.sort((a, b) => new Date(b.time) - new Date(a.time));
+
+			const counts = ENTRIES.reduce((acc, e) => {
+				acc[e.source] = (acc[e.source] || 0) + 1;
+				return acc;
+			}, {});
+
+			renderFilters(counts);
+			render();
+
+			if (gh.stale) {
+				document.getElementById('log-note').insertAdjacentHTML('afterend', Site.fault(
+					'Showing the last cached copy. The GitHub API did not respond.',
+					'SOURCE: api.github.com · CACHED'
+				));
+			}
+		})();
 	</script>
 </body>
 </html>

@@ -1,0 +1,47 @@
+name: Refresh vendored assets and feeds
+
+# Keeps assets/ and feeds/ current without hand-updating the site.
+# Runs on GitHub's infrastructure, so visitors never make a third-party
+# request and the API rate limit is 5000/hr instead of 60/hr.
+#
+# feeds/ziggit.json exists because ziggit.dev sends no CORS header, so the
+# browser cannot read it directly. GitHub and dev.to stay live client-side.
+
+on:
+  schedule:
+    - cron: '17 6 * * *'   # daily, 06:17 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  vendor:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Refresh assets
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 tools/vendor_assets.py
+
+      - name: Refresh feeds
+        continue-on-error: true
+        run: python3 tools/fetch_feeds.py
+
+      - name: Commit changes
+        run: |
+          if [ -z "$(git status --porcelain assets feeds)" ]; then
+            echo "No changes."
+            exit 0
+          fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets feeds
+          git commit -m "chore: refresh vendored assets and feeds"
+          git push
