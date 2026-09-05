@@ -4,10 +4,18 @@
     {
       "source": "rust",
       "repo": "rust forum",
+      "title": "Need help about AI",
+      "kind": "replied",
+      "url": "https://users.rust-lang.org/t/need-help-about-ai/142201/8",
+      "time": "2026-09-04T17:26:47.635Z"
+    },
+    {
+      "source": "rust",
+      "repo": "rust forum",
       "title": "LoMux: Adobe Media Encoder Alternative (First Rust Project)",
       "kind": "posted topic",
-      "url": "https://users.rust-lang.org/t/lomux-adobe-media-encoder-alternative-first-rust-project/139566",
-      "time": "2026-04-14T06:04:51.836Z"
+      "url": "https://users.rust-lang.org/t/lomux-adobe-media-encoder-alternative-first-rust-project/139566/1",
+      "time": "2026-04-14T06:04:51.750Z"
     }
   ]
 }
