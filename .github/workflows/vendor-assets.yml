@@ -30,6 +30,10 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python3 tools/vendor_assets.py
 
+      - name: Refresh tool logos
+        continue-on-error: true
+        run: python3 tools/vendor_tool_icons.py
+
       - name: Refresh feeds
         continue-on-error: true
         run: python3 tools/fetch_feeds.py

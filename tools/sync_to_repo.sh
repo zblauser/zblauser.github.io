@@ -30,8 +30,8 @@ fi
 rsync -av --delete "${MODE[@]}" \
   --exclude '.git/' \
   --exclude '.DS_Store' \
-  --exclude '_frame.html' \
-  --exclude '_probe.html' \
+  --exclude '_*' \
+  --exclude '.claude/' \
   "$SRC"/ "$DEST"/
 
 echo

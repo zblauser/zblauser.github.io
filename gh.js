@@ -31,9 +31,13 @@
 		{ kind: 'orgs',  name: 'vim-nvim-plugins' }
 	];
 
-	// Repos excluded from the index: infrastructure, not work.
+	// Excluded from the index: infrastructure and the sites themselves, not
+	// work. The org sites are linked from their headings instead, which also
+	// keeps their HTML out of the language split.
 	const INDEX_EXCLUDE = new Set([
 		'mithraeums/.github',
+		'mithraeums/mithraeums.github.io',
+		'sys-ae/fieldopt.github.io',
 		'zblauser/zblauser.github.io',
 		'zblauser/homebrew-tap'
 	]);
@@ -369,6 +373,67 @@
 		return '—';
 	}
 
+
+	// --- COMMIT SERIES ----------------------------------------------------
+	// Buckets commits we already hold into per-day counts, so the scope trace
+	// costs zero extra requests. /stats/commit_activity would give 52 clean
+	// weeks but at one request per repo, which the 60/hr budget cannot pay.
+	//
+	// Returns { counts, days, total, peak, from, to, span } where span is the
+	// number of days actually covered by the data — the caller must label the
+	// axis with that, not with the requested window, or the chart lies.
+
+	function commitSeries(events, days) {
+		days = days || 90;
+		const counts = new Array(days).fill(0);
+		if (!Array.isArray(events) || !events.length) {
+			return { counts, days, total: 0, peak: 0, from: null, to: null, span: 0 };
+		}
+
+		const DAY = 86400000;
+		const now = Date.now();
+		let oldest = now;
+		let total = 0;
+
+		for (const e of events) {
+			const t = new Date(e.time).getTime();
+			if (isNaN(t)) continue;
+			const age = Math.floor((now - t) / DAY);
+			if (age < 0 || age >= days) continue;
+			counts[days - 1 - age] += 1;
+			total += 1;
+			if (t < oldest) oldest = t;
+		}
+
+		return {
+			counts,
+			days,
+			total,
+			peak: counts.reduce((a, b) => Math.max(a, b), 0),
+			from: new Date(oldest),
+			to: new Date(now),
+			span: Math.max(1, Math.ceil((now - oldest) / DAY))
+		};
+	}
+
+	// Language split by repository count. Bytes would need one request per
+	// repo; the index already carries the primary language, which is the
+	// honest thing to plot without spending the budget.
+	function languageSplit(repos, top) {
+		const tally = {};
+		for (const r of repos || []) {
+			const l = r.lang;
+			if (!l || l === '\u2014') continue;
+			tally[l] = (tally[l] || 0) + 1;
+		}
+		const rows = Object.entries(tally)
+			.map(([lang, n]) => ({ lang, n }))
+			.sort((a, b) => b.n - a.n);
+		const sum = rows.reduce((a, r) => a + r.n, 0) || 1;
+		for (const r of rows) r.pct = r.n / sum;
+		return rows.slice(0, top || 6);
+	}
+
 	// --- FORMATTING -------------------------------------------------------
 
 	function timeAgo(dateStr) {
@@ -422,6 +487,8 @@
 		fetchIndexMap,
 		fetchEvents,
 		fetchReleases,
+		commitSeries,
+		languageSplit,
 		timeAgo,
 		isoDate,
 		formatDate,

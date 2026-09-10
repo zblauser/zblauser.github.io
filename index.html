@@ -1,256 +1,390 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>ZB-1 · Zachary Blauser</title>
-	<meta name="description" content="Zachary Blauser, systems programmer. C and Zig, infrastructure automation, developer tooling. Tampa, Florida.">
-	<link rel="canonical" href="https://zblauser.dev/">
-	<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-	<link rel="icon" href="assets/favicon-32.png" sizes="32x32">
-	<link rel="apple-touch-icon" href="assets/favicon-180.png">
-	<meta name="theme-color" content="#000000">
-	<meta property="og:type" content="website">
-	<meta property="og:site_name" content="Zachary Blauser">
-	<meta property="og:title" content="ZB-1 · Zachary Blauser">
-	<meta property="og:description" content="Zachary Blauser, systems programmer. C and Zig, infrastructure automation, developer tooling. Tampa, Florida.">
-	<meta property="og:url" content="https://zblauser.dev/">
-	<meta property="og:image" content="https://zblauser.dev/assets/og.png">
-	<meta property="og:image:width" content="1200">
-	<meta property="og:image:height" content="630">
-	<meta name="twitter:card" content="summary_large_image">
-	<meta name="twitter:creator" content="@parhelicsquare">
-	<meta name="twitter:title" content="ZB-1 · Zachary Blauser">
-	<meta name="twitter:description" content="Zachary Blauser, systems programmer. C and Zig, infrastructure automation, developer tooling. Tampa, Florida.">
-	<meta name="twitter:image" content="https://zblauser.dev/assets/og.png">
-	<link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zachary Blauser</title>
+<meta name="description" content="Zachary Blauser — systems programmer in Tampa. C, Zig, Rust. A live record of what I'm building.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="style.css">
+<link rel="canonical" href="https://zblauser.dev/">
+<link rel="icon" href="assets/favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="assets/favicon-180.png">
+<meta name="theme-color" content="#0c0c0d">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Zachary Blauser">
+<meta property="og:title" content="Zachary Blauser">
+<meta property="og:description" content="Systems programmer in Tampa. Mostly C and Zig. A live record of what I am building.">
+<meta property="og:url" content="https://zblauser.dev/">
+<meta property="og:image" content="https://zblauser.dev/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:creator" content="@parhelicsquare">
+<meta name="twitter:title" content="Zachary Blauser">
+<meta name="twitter:description" content="Systems programmer in Tampa. Mostly C and Zig. A live record of what I am building.">
+<meta name="twitter:image" content="https://zblauser.dev/assets/og.png">
 </head>
 <body>
-	<div class="sheet">
-		<header class="title-block">
-			<div class="tb-name">
-				<h1>ZACHARY BLAUSER</h1>
-				<span class="tb-part">ZB-1</span>
-				<span class="tb-fn">SYSTEMS PROGRAMMER</span>
-			</div>
-			<div class="tb-cells">
-				<div class="tb-cell"><span class="lbl">Document</span><span class="val">ZB-1-DS</span></div>
-				<div class="tb-cell"><span class="lbl">Sheet</span><span class="val">COVER</span></div>
-			</div>
-		</header>
-		<nav class="toc"><a href="index.html" aria-current="page"><span class="sec">—</span>COVER</a><a href="projects.html"><span class="sec">2.0</span>PROJECTS</a><a href="about.html"><span class="sec">3.0</span>ABOUT</a><a href="now.html"><span class="sec">4.0</span>NOW</a><a href="log.html"><span class="sec">5.0</span>LOG</a><a href="uses.html"><span class="sec">6.0</span>TOOLS</a><a href="mailto:zacharymblauser@gmail.com" class="contact-cta"><span class="sec">7.0</span>CONTACT</a></nav>
+<div class="wrap">
 
-		<main class="doc-body">
+  <header>
+    <div>
+      <h1>Zachary Blauser</h1>
+      <p class="intro">
+        Systems programmer in Tampa. Mostly C and Zig: an inference engine with its own GGUF
+        loader, quantization kernels and tokenizer — no llama.cpp, no ggml — a terminal coding
+        agent and a modal editor that are each a single C file, and a field service platform
+        that handles routing and dispatch.
+      </p>
+      <p class="intro">
+        Before software I ran CNC to MIL-SPEC for defense connectors and built filtration for the
+        Airbus XLR line. Now I'm in network operations at Spectrum, finishing an M.S. in computing
+        systems in August, and <a href="mailto:zacharymblauser@gmail.com">open to work</a>.
+      </p>
+    </div>
 
-			<div class="tick-rule" data-label="0–100 MM"></div>
+    <figure class="portrait">
+      <img src="assets/profile.jpg" alt="Zachary Blauser" width="700" height="875">
+      <figcaption>Tampa, FL</figcaption>
+    </figure>
+  </header>
+
+  <div class="strip">
+    <div class="links">
+      <a href="https://github.com/zblauser" target="_blank" rel="noopener" data-ext>github</a>
+      <a href="https://mithraeum.studio" target="_blank" rel="noopener" data-ext>mithraeum</a>
+      <a href="https://dev.to/zblauser" target="_blank" rel="noopener" data-ext>writing</a>
+      <a href="https://x.com/parhelicsquare" target="_blank" rel="noopener" data-ext>x</a>
+      <a href="mailto:zacharymblauser@gmail.com">email</a>
+    </div>
+    <div class="status"><span class="dot" id="dot"></span><span id="status">checking sources…</span></div>
+
+    <div class="stats" id="stats"></div>
+    <div class="langbar" id="langbar"></div>
+    <div class="langkey" id="langkey"></div>
+
+    <div class="tools" id="tools"><span class="tnote">loading…</span></div>
+  </div>
+
+  <div class="sec"><h2>Building</h2><span class="rule"></span><span class="meta" id="proj-meta"></span></div>
+  <div id="projects"><div class="loading">loading…</div></div>
+
+  <div class="sec"><h2>Lately</h2><span class="rule"></span><span class="meta" id="feed-meta"></span></div>
+  <div class="filters" id="filters"></div>
+  <div id="feed"><div class="loading">loading…</div></div>
+
+  <footer>
+    <span>Everything below the intro is pulled live. Nothing here is hand-updated.</span>
+    <span id="year"></span>
+  </footer>
+</div>
+
+<script src="gh.js"></script>
+<script src="site.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  const esc = GH.escapeHtml;
+  const SRC = { github:'commit', release:'release', 'dev.to':'dev.to', ziggit:'ziggit', hn:'hacker news', rust:'rust forum' };
+  const ALWAYS = ['github','release','dev.to','ziggit','hn','rust'];
+
+  // The one thing the API cannot tell us: which account means what.
+  const GROUPS = [
+    { owner:'mithraeums', name:'Mithraeum', note:'local-first AI tooling in C',
+      url:'https://github.com/mithraeums', site:'https://mithraeum.studio' },
+    { owner:'zblauser', name:'Personal', note:'terminal tools, Zig and Rust',
+      url:'https://github.com/zblauser', site:'' },
+    { owner:'sys-ae', name:'sys-ae', note:'open-source field service management',
+      url:'https://github.com/sys-ae', site:'https://fieldopt.dev' },
+    { owner:'vim-nvim-plugins', name:'Editor plugins', note:'vim and neovim',
+      url:'https://github.com/vim-nvim-plugins', site:'' }
+  ];
+
+  // Which mark a repo carries. The API cannot know this: several repos hold an
+  // outdated icon, and Mithraeum reads as one product rather than five.
+  //   force  — every repo under this owner uses this one manifest key
+  //   keepOwn— except these, which have a mark of their own worth showing
+  //   only   — this owner shows a mark on these repos and nowhere else
+  // Repos the Building list does not need to carry: the group header already
+  // links the site this one serves.
+  const HIDE = ['sys-ae/fieldopt.github.io'];
+
+  const ICONS = {
+    force: {
+      'mithraeums': 'org:mithraeums',
+      'sys-ae':     'repo:sys-ae/fieldopt.github.io'
+    },
+    keepOwn: ['mithraeums/hako-studio'],
+    only: {
+      'zblauser': ['zblauser/LoMux']
+    }
+  };
+
+  // GitHub's own language colours, muted so the page stays close to monochrome.
+  const LANG_HEX = {
+    C:'#a8b9cc', 'C++':'#f34b7d', Zig:'#ec915c', Rust:'#dea584', Python:'#3572a5',
+    Go:'#00add8', HTML:'#e34c26', CSS:'#563d7c', JavaScript:'#f1e05a',
+    TypeScript:'#3178c6', Shell:'#89e051', 'Vim Script':'#199f4b', Vim:'#199f4b',
+    Java:'#b07219', Ruby:'#701516', Lua:'#000080', Makefile:'#427819', Nix:'#7e7eff'
+  };
+
+  // Anything this dark disappears on a #0c0c0d page; use the neutral instead.
+  function visible(hex) {
+    if (!hex || !/^#[0-9a-f]{6}$/i.test(hex)) return '';
+    const n = parseInt(hex.slice(1), 16);
+    const lum = (0.2126*(n>>16 & 255) + 0.7152*(n>>8 & 255) + 0.0722*(n & 255)) / 255;
+    return lum < 0.22 ? '' : hex;
+  }
+
+  document.getElementById('year').textContent = '© ' + new Date().getFullYear();
+
+  const fault = (msg, code) =>
+    `<div class="fault"><b>unavailable</b>${esc(msg)}${code ? '<br>' + esc(code) : ''}</div>`;
+
+  function dayLabel(d) {
+    const now = new Date(), a = new Date(d);
+    const days = Math.round((new Date(now.getFullYear(),now.getMonth(),now.getDate())
+      - new Date(a.getFullYear(),a.getMonth(),a.getDate())) / 86400000);
+    if (days === 0) return 'today';
+    if (days === 1) return 'yesterday';
+    if (days < 7) return days + ' days ago';
+    return a.toLocaleDateString('en-US',{ month:'short', day:'numeric',
+      year: a.getFullYear() === now.getFullYear() ? undefined : 'numeric' });
+  }
+  const dayKey = t => new Date(t).toISOString().slice(0,10);
+
+  const indexJob = GH.fetchIndex();
+  const eventsJob = GH.fetchEvents();
+
+  // ---------- BUILDING, grouped by account ----------
+  (async function projects() {
+    const host = document.getElementById('projects');
+    const [{ repos, error, stale }, manifest] = await Promise.all([
+      indexJob,
+      fetch('assets/manifest.json').then(r => r.ok ? r.json() : {}).catch(() => ({}))
+    ]);
+
+    if (error || !repos.length) {
+      host.innerHTML = fault('GitHub did not respond and nothing is cached on this device.','api.github.com');
+      return;
+    }
+
+    const file = k => (manifest[k] || {}).file || '';
+    function repoIcon(r) {
+      const only = ICONS.only[r.owner];
+      if (only && only.indexOf(r.full) === -1) return '';
+      const own = 'repo:' + r.full;
+      if (ICONS.keepOwn.indexOf(r.full) !== -1) return file(own);
+      return file(ICONS.force[r.owner] || own);
+    }
+
+    // Exactly what Building renders, in render order. The counts and the
+    // language split below are taken from this rather than from the raw
+    // index, so the numbers describe what a reader can actually see.
+    const listed = GROUPS.flatMap(g =>
+      repos.filter(r => r.owner === g.owner && r.desc && HIDE.indexOf(r.full) === -1));
+
+    host.innerHTML = GROUPS.map(g => {
+      const mine = repos.filter(r => r.owner === g.owner && r.desc && HIDE.indexOf(r.full) === -1);
+      if (!mine.length) return '';
+      const avatar = file('org:' + g.owner);
+      const host = g.site ? g.site.replace(/^https?:\/\//, '').replace(/\/$/, '') : '';
+      return `<div class="group fade">
+        <div class="ghead">
+          <a class="gname" href="${esc(g.url)}" target="_blank" rel="noopener">
+            ${avatar ? `<img src="${esc(avatar)}" alt="" aria-hidden="true">` : ''}${esc(g.name)}
+          </a>
+          ${host ? `<a class="gsite" href="${esc(g.site)}" target="_blank" rel="noopener">${esc(host)}</a>` : ''}
+          <span class="gnote">${esc(g.note)} · ${mine.length}</span>
+        </div>
+        ${mine.map(r => {
+          const ic = repoIcon(r);
+          return `<a class="proj" href="${esc(r.url)}" target="_blank" rel="noopener">
+            <span>
+              <span class="pname">${ic ? `<img src="${esc(ic)}" alt="" aria-hidden="true">` : ''}${esc(r.name)}</span>
+              <span class="pdesc">${esc(r.desc)}</span>
+            </span>
+            <span class="pmeta"><span>${esc(r.lang)}</span><span>${GH.timeAgo(r.pushed)}</span></span>
+          </a>`;
+        }).join('')}
+      </div>`;
+    }).join('');
+
+    document.getElementById('proj-meta').textContent =
+      listed.length + ' repositories' + (stale ? ' · cached' : '');
+
+    // stats + language split, both free: the index is already in hand
+    const stars = listed.reduce((a,r) => a + r.stars, 0);
+    const langs = GH.languageSplit(listed, 6);
+    const ev = await eventsJob;
+    const series = GH.commitSeries(ev.events || [], 90);
+
+    document.getElementById('stats').innerHTML = [
+      ['repositories', listed.length],
+      ['commits', series.total ? series.total + ' / ' + series.span + 'd' : '—'],
+      ['languages', langs.length],
+      ['stars', stars]
+    ].map(([k,v]) => `<div><span class="v">${esc(String(v))}</span><span class="k">${esc(k)}</span></div>`).join('');
+
+    // pct is share of *all* languages, so the top six sum to less than one.
+    // Grow by repo count instead, or the bar stops short of the right edge.
+    document.getElementById('langbar').innerHTML = langs.map(l => {
+      const c = visible(LANG_HEX[l.lang]);
+      return `<span style="flex:${l.n}${c ? ';background:' + c : ''}" title="${esc(l.lang)}"></span>`;
+    }).join('');
+    document.getElementById('langkey').innerHTML =
+      langs.map(l => `<span><b>${esc(l.lang)}</b> ${Math.round(l.pct*100)}%</span>`).join('');
+  })();
 
 
-			<div class="cover-grid">
-				<div class="cover-cell">
-					<span class="cell-label">Fig. 1. Package outline and pin configuration (top view)</span>
-					<svg class="pin-diagram" viewBox="51 26 305 260" role="img"
-						aria-label="SOIC-8 package, top view. Left pins 1 to 4: ZIG, C, RUST, GND. Right pins 8 to 5: VCC, INFRA, EMBED, CLI.">
+  // ---------- TOOLS ----------
+  // Vendored from Simple Icons by tools/vendor_tool_icons.py, so this makes no
+  // third-party request. Painted as a CSS mask so one neutral file can take its
+  // brand colour on hover.
+  (async function tools() {
+    const host = document.getElementById('tools');
+    let list = [];
+    try {
+      const r = await fetch('assets/tools.json');
+      if (!r.ok) throw new Error(r.status);
+      list = ((await r.json()) || {}).tools || [];
+    } catch {
+      host.innerHTML = '<span class="tnote">tool list unavailable.</span>';
+      return;
+    }
+    if (!list.length) { host.innerHTML = '<span class="tnote">none listed.</span>'; return; }
 
-						<text class="ref" x="200" y="40" text-anchor="middle">U1</text>
+    host.innerHTML = list.map(t => {
+      const c = visible(t.hex);
+      return `<a class="tool" href="${esc(t.url)}" target="_blank" rel="noopener"
+                 data-name="${esc(t.name)}" aria-label="${esc(t.name)}"
+                 style="--m:url('${esc(t.file)}')${c ? ';--c:' + c : ''}"><i></i></a>`;
+    }).join('');
 
-						<!-- gull-wing leads, drawn to pitch: 1.27 BSC scaled off the body -->
-						<path class="pin-lead" d="M 135 66 H 100 V 80 H 135" />
-						<path class="pin-lead" d="M 135 109 H 100 V 123 H 135" />
-						<path class="pin-lead" d="M 135 152 H 100 V 166 H 135" />
-						<path class="pin-lead" d="M 135 195 H 100 V 209 H 135" />
-						<path class="pin-lead" d="M 265 66 H 300 V 80 H 265" />
-						<path class="pin-lead" d="M 265 109 H 300 V 123 H 265" />
-						<path class="pin-lead" d="M 265 152 H 300 V 166 H 265" />
-						<path class="pin-lead" d="M 265 195 H 300 V 209 H 265" />
+    // Touch has no hover, so the first tap reveals the label and the second
+    // follows the link.
+    host.addEventListener('click', e => {
+      const a = e.target.closest('.tool');
+      if (!a || matchMedia('(hover: hover)').matches) return;
+      if (!a.classList.contains('on')) {
+        e.preventDefault();
+        host.querySelectorAll('.tool.on').forEach(x => x.classList.remove('on'));
+        a.classList.add('on');
+      }
+    });
+  })();
 
-						<!-- body, drawn over the lead roots so they read as tucked under -->
-						<rect class="pkg-body" x="135" y="55" width="130" height="165" />
-						<path class="pkg-mark" d="M 188 55 A 12 12 0 0 0 212 55" />
-						<circle class="pin-pad" cx="145" cy="66" r="3" />
+  // ---------- LATELY ----------
+  let ENTRIES = [], ACTIVE = 'all', SHOWN = 40;
 
-						<!-- pin numbers inside the body, signal names outside the leads -->
-						<text class="pin-num" x="153" y="77">1</text>
-						<text class="pin-num" x="153" y="120">2</text>
-						<text class="pin-num" x="153" y="163">3</text>
-						<text class="pin-num" x="153" y="206">4</text>
-						<text class="pin-num" x="247" y="77"  text-anchor="end">8</text>
-						<text class="pin-num" x="247" y="120" text-anchor="end">7</text>
-						<text class="pin-num" x="247" y="163" text-anchor="end">6</text>
-						<text class="pin-num" x="247" y="206" text-anchor="end">5</text>
+  function render() {
+    const host = document.getElementById('feed');
+    const rows = ACTIVE === 'all' ? ENTRIES : ENTRIES.filter(e => e.source === ACTIVE);
 
-						<text x="92" y="77"  font-size="12" text-anchor="end">ZIG</text>
-						<text x="92" y="120" font-size="12" text-anchor="end">C</text>
-						<text x="92" y="163" font-size="12" text-anchor="end">RUST</text>
-						<text x="92" y="206" font-size="12" text-anchor="end">GND</text>
-						<text x="308" y="77"  font-size="12">VCC</text>
-						<text x="308" y="120" font-size="12">INFRA</text>
-						<text x="308" y="163" font-size="12">EMBED</text>
-						<text x="308" y="206" font-size="12">CLI</text>
+    if (!rows.length) {
+      host.innerHTML = ACTIVE === 'all'
+        ? fault('No sources responded and nothing is cached on this device.','github · dev.to · ziggit · hn · rust')
+        : '<div class="loading">nothing from this source yet.</div>';
+      return;
+    }
 
-						<!-- laser marking -->
-						<text x="200" y="132" font-size="16" text-anchor="middle" font-weight="600">ZB-1</text>
-						<text x="200" y="149" font-size="10" text-anchor="middle">TPA FL</text>
-						<text class="ref" x="200" y="165" text-anchor="middle">2609</text>
+    const page = rows.slice(0, SHOWN), days = [];
+    for (const e of page) {
+      const k = dayKey(e.time);
+      if (!days.length || days[days.length-1].k !== k) days.push({ k, when: dayLabel(e.time), items: [] });
+      days[days.length-1].items.push(e);
+    }
 
-						<!-- overall lead span, real datasheet furniture -->
-						<path class="dim" d="M 100 213 V 254" />
-						<path class="dim" d="M 300 213 V 254" />
-						<path class="dim" d="M 100 248 H 300" />
-						<path class="dim" d="M 100 244 V 252" />
-						<path class="dim" d="M 300 244 V 252" />
-						<text class="ref" x="200" y="244" text-anchor="middle">6.00</text>
+    host.innerHTML = days.map(d => `<div class="day">
+      <div class="when">${esc(d.when)}</div>
+      <div class="items">${d.items.map(e => `
+        <a class="item${e.source === 'release' ? ' rel' : ''}" href="${esc(e.url)}" target="_blank" rel="noopener">
+          <span class="top">
+            <span class="src">${esc(SRC[e.source] || e.source)}</span>
+            <span class="where">${esc(e.repo)}</span>
+            ${e.sha ? `<span class="sha">${esc(e.sha)}</span>` : ''}
+          </span>
+          <span class="what">${esc(e.message)}</span>
+        </a>`).join('')}</div>
+    </div>`).join('')
+      + (rows.length > SHOWN ? `<button class="more" id="more">show more · ${rows.length - SHOWN} left</button>` : '');
 
-						<text class="ref" x="200" y="277" text-anchor="middle">SOIC-8 &#183; 150 MIL &#183; 1.27 BSC</text>
-					</svg>
-				</div>
+    const more = document.getElementById('more');
+    if (more) more.addEventListener('click', () => { SHOWN += 40; render(); });
+  }
 
-				<div class="cover-cell">
-					<span class="cell-label">Fig. 2. Package photograph</span>
-					<figure class="package-photo">
-						<img src="assets/profile.jpg" alt="Zachary Blauser">
-						<figcaption>ZB-1 · single unit · not to scale</figcaption>
-					</figure>
-				</div>
-			</div>
+  function renderFilters() {
+    const counts = ENTRIES.reduce((a,e) => (a[e.source] = (a[e.source]||0)+1, a), {});
+    const host = document.getElementById('filters');
+    const keys = ['all', ...Object.keys(SRC).filter(k => ALWAYS.includes(k) || counts[k])];
+    host.innerHTML = keys.map(k =>
+      `<button data-s="${k}" class="${k === ACTIVE ? 'on' : ''}">${k === 'all' ? 'everything' : esc(SRC[k])}
+        <span class="n">${k === 'all' ? ENTRIES.length : (counts[k] || 0)}</span></button>`).join('');
+    host.querySelectorAll('button').forEach(b => b.addEventListener('click', () => {
+      ACTIVE = b.dataset.s; SHOWN = 40;
+      host.querySelectorAll('button').forEach(x => x.classList.toggle('on', x === b));
+      render();
+    }));
+    document.getElementById('feed-meta').textContent =
+      ENTRIES.length + ' entries · ' + Object.keys(counts).length + ' sources';
+  }
 
-			<section class="section" id="features">
-				<h2><span class="sec-no">1.0</span> Features</h2>
-				<ul class="features">
-					<li><b>Systems programming</b> in C and Zig. Own loaders, kernels, tokenizers</li>
-					<li><b>Single-file tools.</b> No node, no python, no runtime to install</li>
-					<li><b>Infrastructure automation</b> and developer tooling</li>
-					<li><b>Embedded and close to the metal.</b> The hardware/software boundary</li>
-					<li><b>M.S. Computer Science</b>; B.S. Computer Science; B.A. Political Science</li>
-					<li>Operating location: Tampa, Florida</li>
-					<li>Model agnostic tooling across 13 providers, plus local inference</li>
-				</ul>
-			</section>
+  (async function feed() {
+    const [gh, devto, ziggit, hn, rust] = await Promise.all([
+      eventsJob,
+      Site.fetchDevtoArticles('zblauser'),
+      Site.fetchForumPosts('ziggit'),
+      Site.fetchHNPosts(),
+      Site.fetchForumPosts('rust')
+    ]);
 
-			<section class="section" id="description">
-				<h2><span class="sec-no">1.1</span> General Description</h2>
-				<div class="prose">
-					<p>
-						ZB-1 is a systems programmer optimized for low-level work: language runtimes,
-						terminal software, and the infrastructure underneath both. Primary output is
-						small, fast, dependency-free tools: a C inference engine with its own loader
-						and tokenizer, a terminal agent in a single C file, a Zig music client that
-						needs no authentication.
-					</p>
-					<p>
-						Full specifications for each part are given in
-						<a href="projects.html">Section 2.0</a>. Current operating conditions are given
-						in <a href="now.html">Section 4.0</a>.
-					</p>
-				</div>
-			</section>
+    const home = { ziggit:'ziggit.dev', rust:'users.rust-lang.org', hn:'news.ycombinator.com' };
 
-			<section class="section" id="revisions">
-				<h2>
-					<span class="sec-no">1.2</span> Revision History
-					<span class="sec-note">Latest tagged releases · live</span>
-				</h2>
-				<div class="table-wrap">
-					<table class="spec">
-						<thead>
-							<tr>
-								<th>Rev</th>
-								<th>Part</th>
-								<th>Version</th>
-								<th>Date</th>
-								<th>Description</th>
-							</tr>
-						</thead>
-						<tbody id="rev-body">
-							<tr><td colspan="5"><span class="data-na">READING</span></td></tr>
-						</tbody>
-					</table>
-				</div>
-				<p class="table-note">Full change record in <a href="log.html">Section 5.0</a>.</p>
-			</section>
+    ENTRIES = [
+      ...(gh.events || []).map(e => ({ source:'github', time:e.time, repo:e.repo, sha:e.sha, url:e.url, message:e.message })),
+      ...(devto || []).map(a => ({ source:'dev.to', time:a.time, repo:'article', sha:'', url:a.url, message:a.title })),
+      ...[...(ziggit||[]), ...(hn||[]), ...(rust||[])].map(p => ({
+        source:p.source, time:p.time, repo:home[p.source] || p.repo, sha:'', url:p.url,
+        message:(p.kind ? p.kind + ' — ' : '') + p.title
+      }))
+    ].filter(e => e.time && e.url).sort((a,b) => new Date(b.time) - new Date(a.time));
 
-			<section class="section" id="ordering">
-				<h2><span class="sec-no">1.3</span> Ordering Information</h2>
-				<div class="order-links" id="order-links"></div>
-				<div class="barcode-row" data-barcode></div>
-			</section>
+    renderFilters();
+    render();
 
-		</main>
-	</div>
+    const dot = document.getElementById('dot'), st = document.getElementById('status');
+    const live = new Set(ENTRIES.map(e => e.source)).size;
+    if (ENTRIES.length) {
+      dot.classList.add('live');
+      st.textContent = 'last activity ' + GH.timeAgo(ENTRIES[0].time) + ' · ' + live + ' of 5 sources responding';
+    } else {
+      st.textContent = 'no sources responding';
+    }
 
-	<script src="gh.js"></script>
-	<script src="site.js"></script>
-	<script>
-		Site.initDoc({ title: 'COVER' });
+    // Releases cost ten of a visitor's sixty unauthenticated requests, so they
+    // are folded in only once the stream is actually on screen.
+    lazily(document.getElementById('feed'), async () => {
+      const { releases } = await GH.fetchReleases();
+      if (!releases || !releases.length) return;
+      ENTRIES = ENTRIES.concat(releases.map(r => ({
+        source:'release', time:r.time, repo:r.repo, sha:r.tag, url:r.url,
+        message:r.body && r.body !== '—' ? r.body : 'released ' + r.tag
+      }))).sort((a,b) => new Date(b.time) - new Date(a.time));
+      renderFilters();
+      render();
+    });
+  })();
 
-		// Ordering information. Links only, no third-party feeds.
-		(function renderOrder() {
-			const host = document.getElementById('order-links');
-			const D = Site.DOC;
-			const items = [
-				{ href: D.github, label: 'GitHub' },
-				{ href: 'https://dev.to/zblauser', label: 'dev.to' },
-				D.x ? { href: D.x, label: 'X' } : null,
-				{ href: 'mailto:' + D.email, label: 'Email' }
-			].filter(Boolean);
-
-			host.innerHTML = items.map(i =>
-				`<a href="${i.href}"${i.href.startsWith('mailto:') ? '' : ' target="_blank" rel="noopener"'}>${i.label} →</a>`
-			).join('');
-		})();
-
-		// Revision history: latest release per part, newest first.
-		//
-		// Deferred until the table is actually on screen. This costs ten of a
-		// visitor's sixty unauthenticated GitHub requests, and section 1.2 sits
-		// well below the fold — a reader who never scrolls to it should not pay
-		// for it. IntersectionObserver is unavailable in nothing we support, but
-		// the fallback runs the fetch immediately rather than showing nothing.
-		function whenVisible(el, run) {
-			if (!('IntersectionObserver' in window)) { run(); return; }
-			const io = new IntersectionObserver(entries => {
-				if (entries.some(e => e.isIntersecting)) { io.disconnect(); run(); }
-			}, { rootMargin: '300px' });
-			io.observe(el);
-		}
-
-		whenVisible(document.getElementById('revisions'), async function renderRevisions() {
-			const body = document.getElementById('rev-body');
-			const { releases, stale } = await GH.fetchReleases();
-
-			if (!releases || releases.length === 0) {
-				body.innerHTML = '<tr><td colspan="5">' + Site.fault(
-					'Release data could not be read from the GitHub API and no cached copy exists on this device.',
-					'SOURCE: api.github.com · RETRY: reload'
-				) + '</td></tr>';
-				return;
-			}
-
-			const rows = releases.slice(0, 8);
-			const total = rows.length;
-
-			body.innerHTML = rows.map((r, i) => {
-				// Newest release carries the highest revision number.
-				const rev = String(total - i).padStart(3, '0');
-				const isNew = GH.isRecent(r.time, 21);
-				const desc = GH.escapeHtml(GH.truncate(r.body || r.name || '—', 64));
-				return `
-					<tr${isNew ? ' class="is-new"' : ''}>
-						<td class="num">${rev}</td>
-						<td class="id"><a href="https://github.com/${GH.escapeHtml(r.repoFull)}" target="_blank" rel="noopener">${GH.escapeHtml(r.repo)}</a></td>
-						<td class="id"><a href="${GH.escapeHtml(r.url)}" target="_blank" rel="noopener">${GH.escapeHtml(r.tag)}</a></td>
-						<td class="num">${GH.isoDate(r.time)}</td>
-						<td>${desc}</td>
-					</tr>
-				`;
-			}).join('');
-
-			if (stale) {
-				body.insertAdjacentHTML('beforeend', '<tr><td colspan="5">' + Site.fault(
-					'Showing the last cached copy. The GitHub API did not respond.',
-					'SOURCE: api.github.com · CACHED'
-				) + '</td></tr>');
-			}
-		});
-	</script>
+  function lazily(el, run) {
+    if (!('IntersectionObserver' in window)) { run(); return; }
+    const io = new IntersectionObserver(es => {
+      if (es.some(e => e.isIntersecting)) { io.disconnect(); run(); }
+    }, { rootMargin: '400px' });
+    io.observe(el);
+  }
+})();
+</script>
 </body>
 </html>

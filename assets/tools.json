@@ -1,0 +1,342 @@
+{
+  "source": "simple-icons@13",
+  "license": "CC0-1.0",
+  "tools": [
+    {
+      "slug": "hako",
+      "name": "hako",
+      "url": "https://mithraeum.studio",
+      "hex": "#b89656",
+      "file": "assets/tools/hako.svg"
+    },
+    {
+      "slug": "c",
+      "name": "C",
+      "url": "https://en.cppreference.com/w/c",
+      "hex": "#A8B9CC",
+      "file": "assets/tools/c.svg"
+    },
+    {
+      "slug": "zig",
+      "name": "Zig",
+      "url": "https://ziglang.org",
+      "hex": "#F7A41D",
+      "file": "assets/tools/zig.svg"
+    },
+    {
+      "slug": "rust",
+      "name": "Rust",
+      "url": "https://www.rust-lang.org",
+      "hex": "#000000",
+      "file": "assets/tools/rust.svg"
+    },
+    {
+      "slug": "python",
+      "name": "Python",
+      "url": "https://www.python.org",
+      "hex": "#3776AB",
+      "file": "assets/tools/python.svg"
+    },
+    {
+      "slug": "go",
+      "name": "Go",
+      "url": "https://go.dev",
+      "hex": "#00ADD8",
+      "file": "assets/tools/go.svg"
+    },
+    {
+      "slug": "javascript",
+      "name": "JavaScript",
+      "url": "https://developer.mozilla.org/docs/Web/JavaScript",
+      "hex": "#F7DF1E",
+      "file": "assets/tools/javascript.svg"
+    },
+    {
+      "slug": "typescript",
+      "name": "TypeScript",
+      "url": "https://www.typescriptlang.org",
+      "hex": "#3178C6",
+      "file": "assets/tools/typescript.svg"
+    },
+    {
+      "slug": "openjdk",
+      "name": "Java",
+      "url": "https://openjdk.org",
+      "hex": "",
+      "file": "assets/tools/openjdk.svg"
+    },
+    {
+      "slug": "gnubash",
+      "name": "Bash",
+      "url": "https://www.gnu.org/software/bash/",
+      "hex": "",
+      "file": "assets/tools/gnubash.svg"
+    },
+    {
+      "slug": "zsh",
+      "name": "zsh",
+      "url": "https://www.zsh.org",
+      "hex": "",
+      "file": "assets/tools/zsh.svg"
+    },
+    {
+      "slug": "neovim",
+      "name": "Neovim",
+      "url": "https://neovim.io",
+      "hex": "#57A143",
+      "file": "assets/tools/neovim.svg"
+    },
+    {
+      "slug": "vim",
+      "name": "Vim",
+      "url": "https://www.vim.org",
+      "hex": "#019733",
+      "file": "assets/tools/vim.svg"
+    },
+    {
+      "slug": "tmux",
+      "name": "tmux",
+      "url": "https://github.com/tmux/tmux",
+      "hex": "#1BB91F",
+      "file": "assets/tools/tmux.svg"
+    },
+    {
+      "slug": "llvm",
+      "name": "LLVM",
+      "url": "https://llvm.org",
+      "hex": "#262D3A",
+      "file": "assets/tools/llvm.svg"
+    },
+    {
+      "slug": "cmake",
+      "name": "CMake",
+      "url": "https://cmake.org",
+      "hex": "#064F8C",
+      "file": "assets/tools/cmake.svg"
+    },
+    {
+      "slug": "make",
+      "name": "Make",
+      "url": "https://www.gnu.org/software/make/",
+      "hex": "#6D00CC",
+      "file": "assets/tools/make.svg"
+    },
+    {
+      "slug": "git",
+      "name": "Git",
+      "url": "https://git-scm.com",
+      "hex": "#F05032",
+      "file": "assets/tools/git.svg"
+    },
+    {
+      "slug": "githubactions",
+      "name": "GitHub Actions",
+      "url": "https://github.com/features/actions",
+      "hex": "#2088FF",
+      "file": "assets/tools/githubactions.svg"
+    },
+    {
+      "slug": "archlinux",
+      "name": "Arch Linux",
+      "url": "https://archlinux.org",
+      "hex": "#1793D1",
+      "file": "assets/tools/archlinux.svg"
+    },
+    {
+      "slug": "debian",
+      "name": "Debian",
+      "url": "https://www.debian.org",
+      "hex": "#A81D33",
+      "file": "assets/tools/debian.svg"
+    },
+    {
+      "slug": "ubuntu",
+      "name": "Ubuntu",
+      "url": "https://ubuntu.com",
+      "hex": "#E95420",
+      "file": "assets/tools/ubuntu.svg"
+    },
+    {
+      "slug": "linux",
+      "name": "Linux",
+      "url": "https://kernel.org",
+      "hex": "#FCC624",
+      "file": "assets/tools/linux.svg"
+    },
+    {
+      "slug": "apple",
+      "name": "macOS",
+      "url": "https://www.apple.com/macos/",
+      "hex": "#000000",
+      "file": "assets/tools/apple.svg"
+    },
+    {
+      "slug": "docker",
+      "name": "Docker",
+      "url": "https://www.docker.com",
+      "hex": "#2496ED",
+      "file": "assets/tools/docker.svg"
+    },
+    {
+      "slug": "postgresql",
+      "name": "PostgreSQL",
+      "url": "https://www.postgresql.org",
+      "hex": "#4169E1",
+      "file": "assets/tools/postgresql.svg"
+    },
+    {
+      "slug": "sqlite",
+      "name": "SQLite",
+      "url": "https://sqlite.org",
+      "hex": "#003B57",
+      "file": "assets/tools/sqlite.svg"
+    },
+    {
+      "slug": "mysql",
+      "name": "MySQL",
+      "url": "https://www.mysql.com",
+      "hex": "#4479A1",
+      "file": "assets/tools/mysql.svg"
+    },
+    {
+      "slug": "fastapi",
+      "name": "FastAPI",
+      "url": "https://fastapi.tiangolo.com",
+      "hex": "#009688",
+      "file": "assets/tools/fastapi.svg"
+    },
+    {
+      "slug": "react",
+      "name": "React",
+      "url": "https://react.dev",
+      "hex": "#61DAFB",
+      "file": "assets/tools/react.svg"
+    },
+    {
+      "slug": "nodedotjs",
+      "name": "Node.js",
+      "url": "https://nodejs.org",
+      "hex": "#5FA04E",
+      "file": "assets/tools/nodedotjs.svg"
+    },
+    {
+      "slug": "nginx",
+      "name": "nginx",
+      "url": "https://nginx.org",
+      "hex": "",
+      "file": "assets/tools/nginx.svg"
+    },
+    {
+      "slug": "htmx",
+      "name": "htmx",
+      "url": "https://htmx.org",
+      "hex": "#3366CC",
+      "file": "assets/tools/htmx.svg"
+    },
+    {
+      "slug": "amazonwebservices",
+      "name": "AWS",
+      "url": "https://aws.amazon.com",
+      "hex": "",
+      "file": "assets/tools/amazonwebservices.svg"
+    },
+    {
+      "slug": "anthropic",
+      "name": "Claude",
+      "url": "https://www.anthropic.com",
+      "hex": "#D97757",
+      "file": "assets/tools/anthropic.svg"
+    },
+    {
+      "slug": "ollama",
+      "name": "Ollama",
+      "url": "https://ollama.com",
+      "hex": "#000000",
+      "file": "assets/tools/ollama.svg"
+    },
+    {
+      "slug": "huggingface",
+      "name": "Hugging Face",
+      "url": "https://huggingface.co",
+      "hex": "#FFD21E",
+      "file": "assets/tools/huggingface.svg"
+    },
+    {
+      "slug": "pytorch",
+      "name": "PyTorch",
+      "url": "https://pytorch.org",
+      "hex": "#EE4C2C",
+      "file": "assets/tools/pytorch.svg"
+    },
+    {
+      "slug": "numpy",
+      "name": "NumPy",
+      "url": "https://numpy.org",
+      "hex": "#013243",
+      "file": "assets/tools/numpy.svg"
+    },
+    {
+      "slug": "pandas",
+      "name": "pandas",
+      "url": "https://pandas.pydata.org",
+      "hex": "#150458",
+      "file": "assets/tools/pandas.svg"
+    },
+    {
+      "slug": "scikitlearn",
+      "name": "scikit-learn",
+      "url": "https://scikit-learn.org",
+      "hex": "#F7931E",
+      "file": "assets/tools/scikitlearn.svg"
+    },
+    {
+      "slug": "ffmpeg",
+      "name": "FFmpeg",
+      "url": "https://ffmpeg.org",
+      "hex": "#007808",
+      "file": "assets/tools/ffmpeg.svg"
+    },
+    {
+      "slug": "webassembly",
+      "name": "WebAssembly",
+      "url": "https://webassembly.org",
+      "hex": "#654FF0",
+      "file": "assets/tools/webassembly.svg"
+    },
+    {
+      "slug": "wireshark",
+      "name": "Wireshark",
+      "url": "https://www.wireshark.org",
+      "hex": "#1679A7",
+      "file": "assets/tools/wireshark.svg"
+    },
+    {
+      "slug": "espressif",
+      "name": "ESP32",
+      "url": "https://www.espressif.com",
+      "hex": "",
+      "file": "assets/tools/espressif.svg"
+    },
+    {
+      "slug": "raspberrypi",
+      "name": "Raspberry Pi",
+      "url": "https://www.raspberrypi.com",
+      "hex": "#A22846",
+      "file": "assets/tools/raspberrypi.svg"
+    },
+    {
+      "slug": "arduino",
+      "name": "Arduino",
+      "url": "https://www.arduino.cc",
+      "hex": "#00878F",
+      "file": "assets/tools/arduino.svg"
+    },
+    {
+      "slug": "kicad",
+      "name": "KiCad",
+      "url": "https://www.kicad.org",
+      "hex": "#314CB0",
+      "file": "assets/tools/kicad.svg"
+    }
+  ]
+}

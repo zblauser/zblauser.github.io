@@ -1,69 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>ZB-1 · Sheet Not Found</title>
-	<meta name="description" content="The requested sheet is not part of this document.">
-	<meta name="robots" content="noindex">
-	<!-- Root-relative: a 404 can be served from any path depth. -->
-	<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
-	<link rel="icon" href="/assets/favicon-32.png" sizes="32x32">
-	<link rel="apple-touch-icon" href="/assets/favicon-180.png">
-	<meta name="theme-color" content="#000000">
-	<link rel="stylesheet" href="/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Not found — Zachary Blauser</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/favicon-32.png" sizes="32x32">
+<meta name="theme-color" content="#0c0c0d">
+<link rel="stylesheet" href="style.css">
+<style>
+	.nf{min-height:76vh;display:flex;flex-direction:column;justify-content:center}
+	.nf .code{font-family:var(--mono);font-size:12px;letter-spacing:.13em;text-transform:uppercase;color:var(--low)}
+	.nf h1{margin-top:.8rem}
+	.nf p{margin-top:1rem;font-size:1.05rem;line-height:1.6;max-width:52ch;color:var(--ink)}
+	.nf a{text-decoration:underline;text-decoration-color:var(--low);text-underline-offset:.2em;
+	 text-decoration-thickness:1px}
+	.nf a:hover{text-decoration-color:var(--ink)}
+</style>
 </head>
 <body>
-	<div class="sheet">
-		<header class="title-block">
-			<div class="tb-name">
-				<h1>ZACHARY BLAUSER</h1>
-				<span class="tb-part">ZB-1</span>
-				<span class="tb-fn">SYSTEMS PROGRAMMER</span>
-			</div>
-			<div class="tb-cells">
-				<div class="tb-cell"><span class="lbl">Document</span><span class="val">ZB-1-DS</span></div>
-				<div class="tb-cell"><span class="lbl">Sheet</span><span class="val">NOT FOUND</span></div>
-				<div class="tb-cell"><span class="lbl">Status</span><span class="val caution">FAULT</span></div>
-			</div>
-		</header>
-		<nav class="toc">
-			<a href="/index.html"><span class="sec">—</span>COVER</a>
-			<a href="/projects.html"><span class="sec">2.0</span>PROJECTS</a>
-			<a href="/about.html"><span class="sec">3.0</span>ABOUT</a>
-			<a href="/now.html"><span class="sec">4.0</span>NOW</a>
-			<a href="/log.html"><span class="sec">5.0</span>LOG</a>
-			<a href="/uses.html"><span class="sec">6.0</span>TOOLS</a>
-			<a href="mailto:zacharymblauser@gmail.com" class="contact-cta"><span class="sec">7.0</span>CONTACT</a>
-		</nav>
-
-		<main class="doc-body">
-			<div class="tick-rule" data-label="FAULT"></div>
-
-			<section class="section">
-				<h2><span class="sec-no">404</span> Sheet Not Found</h2>
-				<div class="system-fault" role="status">
-					<span class="fault-head">Fault</span>
-					The requested sheet is not part of this document. It may have been
-					renumbered, withdrawn, or it never existed.
-					<span class="fault-code" id="fault-path">SOURCE: —</span>
-				</div>
-				<div class="prose">
-					<p>
-						The table of contents above lists every sheet in this document.
-					</p>
-				</div>
-			</section>
-		</main>
+<div class="wrap">
+	<div class="nf">
+		<span class="code">404</span>
+		<h1>Nothing here</h1>
+		<p>
+			This site used to be six pages and is now one. If you followed an old link to
+			projects, about, now, log or uses, all of it lives on
+			<a href="/">the home page</a> — and it updates itself.
+		</p>
+		<div class="links" style="margin-top:2rem">
+			<a href="/">home</a>
+			<a href="https://github.com/zblauser" target="_blank" rel="noopener" data-ext>github</a>
+			<a href="mailto:zacharymblauser@gmail.com">email</a>
+		</div>
 	</div>
-
-	<script src="/gh.js"></script>
-	<script src="/site.js"></script>
-	<script>
-		Site.initDoc({ title: 'NOT FOUND', docStatus: 'FAULT' });
-		// Report what was actually requested; a 404 that hides the path is useless.
-		document.getElementById('fault-path').textContent =
-			'REQUESTED: ' + location.pathname;
-	</script>
+</div>
 </body>
 </html>
