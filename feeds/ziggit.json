@@ -4,6 +4,14 @@
     {
       "source": "ziggit",
       "repo": "ziggit.dev",
+      "title": "I just bought a laptop from 2012 for zig",
+      "kind": "posted topic",
+      "url": "https://ziggit.dev/t/i-just-bought-a-laptop-from-2012-for-zig/17615/1",
+      "time": "2026-09-15T03:31:04.532Z"
+    },
+    {
+      "source": "ziggit",
+      "repo": "ziggit.dev",
       "title": "Nova Midi - A pure zig Midi I/O Library inpired by libremidi and minimidio",
       "kind": "replied",
       "url": "https://ziggit.dev/t/nova-midi-a-pure-zig-midi-i-o-library-inpired-by-libremidi-and-minimidio/17458/6",
@@ -152,14 +160,6 @@
       "kind": "replied",
       "url": "https://ziggit.dev/t/andrew-kelley-interview-with-jetbrains-channel/15747/24",
       "time": "2026-05-28T19:24:34.597Z"
-    },
-    {
-      "source": "ziggit",
-      "repo": "ziggit.dev",
-      "title": "Andrew Kelley Interview with JetBrains channel",
-      "kind": "replied",
-      "url": "https://ziggit.dev/t/andrew-kelley-interview-with-jetbrains-channel/15747/2",
-      "time": "2026-05-27T17:11:50.997Z"
     }
   ]
 }
