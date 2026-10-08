@@ -118,8 +118,8 @@
 	}
 
 	// --- DISCOURSE FORUMS -------------------------------------------------
-	// Neither ziggit.dev nor users.rust-lang.org sends an
-	// Access-Control-Allow-Origin header, so a browser cannot read them: the
+	// None of ziggit.dev, users.rust-lang.org or forum.golangbridge.org sends
+	// an Access-Control-Allow-Origin header, so a browser cannot read them: the
 	// request is blocked before the response is visible. tools/fetch_feeds.py
 	// snapshots them in CI, where CORS does not apply, and commits
 	// feeds/<key>.json for us to read same-origin.

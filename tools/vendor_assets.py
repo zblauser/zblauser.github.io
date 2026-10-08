@@ -2,7 +2,7 @@
 """Vendor third-party images into assets/ so the site makes no
 third-party requests at page load.
 
-Discovers repos across the four accounts, pulls each org avatar and each
+Discovers repos across the five accounts, pulls each org avatar and each
 repo's icon, and writes them under assets/. Blob SHAs are recorded in
 assets/manifest.json so reruns only write what actually changed.
 
@@ -36,6 +36,7 @@ ACCOUNTS = [
     ("orgs", "mithraeums"),
     ("orgs", "sys-ae"),
     ("orgs", "vim-nvim-plugins"),
+    ("orgs", "rfog-org"),
 ]
 
 ORGS = [name for kind, name in ACCOUNTS if kind == "orgs"]
@@ -43,6 +44,7 @@ ORGS = [name for kind, name in ACCOUNTS if kind == "orgs"]
 # Repos with no visual identity worth vendoring.
 SKIP = {
     "mithraeums/.github",
+    "rfog-org/.github",
     "zblauser/zblauser.github.io",
     "zblauser/homebrew-tap",
     "zblauser/articles",

@@ -1,6 +1,6 @@
 /* ========================================
    GitHub data helper
-   - Repo metadata comes from 4 account-level list calls, not one call
+   - Repo metadata comes from 5 account-level list calls, not one call
      per repo. Unauthenticated GitHub allows 60 req/hr per visitor IP,
      so request count is the budget that matters here.
    - Commits and releases still need per-repo calls; both lists are
@@ -22,13 +22,14 @@
 	const INDEX_CACHE_KEY = 'gh_index_cache_v1';
 	const INDEX_CACHE_TTL_MS = 6 * 60 * 60 * 1000;    // 6 hours
 
-	// The four accounts the work lives under. One request each returns
+	// The five accounts the work lives under. One request each returns
 	// full metadata for every repo they own.
 	const ACCOUNTS = [
 		{ kind: 'users', name: 'zblauser' },
 		{ kind: 'orgs',  name: 'mithraeums' },
 		{ kind: 'orgs',  name: 'sys-ae' },
-		{ kind: 'orgs',  name: 'vim-nvim-plugins' }
+		{ kind: 'orgs',  name: 'vim-nvim-plugins' },
+		{ kind: 'orgs',  name: 'rfog-org' }
 	];
 
 	// Excluded from the index: infrastructure and the sites themselves, not
@@ -37,6 +38,7 @@
 	const INDEX_EXCLUDE = new Set([
 		'mithraeums/.github',
 		'mithraeums/mithraeums.github.io',
+		'rfog-org/.github',
 		'sys-ae/fieldopt.github.io',
 		'zblauser/zblauser.github.io',
 		'zblauser/homebrew-tap'
@@ -53,7 +55,7 @@
 		{ full: 'mithraeums/hako-edit',    display: 'hako-edit' },
 		{ full: 'mithraeums/hako-studio',  display: 'hako-studio' },
 		{ full: 'sys-ae/fieldopt',         display: 'fieldopt' },
-		{ full: 'zblauser/tempo',          display: 'tempo' }
+		{ full: 'rfog-org/rfog',           display: 'rfog' }
 	];
 
 	// Release feed. Also one request each.
@@ -67,7 +69,7 @@
 		{ full: 'mithraeums/hako-edit',   display: 'hako-edit' },
 		{ full: 'sys-ae/fieldopt',        display: 'fieldopt' },
 		{ full: 'vim-nvim-plugins/vibe',  display: 'vibe' },
-		{ full: 'zblauser/cicada',        display: 'cicada' }
+		{ full: 'rfog-org/rfog',          display: 'rfog' }
 	];
 
 	// --- CACHE ------------------------------------------------------------

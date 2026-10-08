@@ -3,6 +3,10 @@
     "file": "assets/orgs/mithraeums.png",
     "sha": "15105"
   },
+  "org:rfog-org": {
+    "file": "assets/orgs/rfog-org.png",
+    "sha": "61003"
+  },
   "org:sys-ae": {
     "file": "assets/orgs/sys-ae.png",
     "sha": "12358"
@@ -26,6 +30,10 @@
   "repo:mithraeums/mithraeums.github.io": {
     "file": "assets/repos/mithraeums-mithraeums.github.io.svg",
     "sha": "c450e0821ea0521fe17b4b1f2a8f8eb470784b4b"
+  },
+  "repo:rfog-org/rfog": {
+    "file": "assets/repos/rfog-org-rfog.svg",
+    "sha": "6877a8abac3dc1e3635fb3e8457bd66ce56f8a34"
   },
   "repo:sys-ae/fieldopt.github.io": {
     "file": "assets/repos/sys-ae-fieldopt.github.io.png",

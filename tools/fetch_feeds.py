@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 """Snapshot feeds that a browser cannot fetch directly.
 
-ziggit.dev is Discourse and returns no Access-Control-Allow-Origin header,
-so a page on zblauser.dev cannot read it: the request is blocked before the
+ziggit.dev, users.rust-lang.org and forum.golangbridge.org are Discourse
+and return no Access-Control-Allow-Origin header, so a page on zblauser.dev
+cannot read them: the request is blocked before the
 response is seen. GitHub and dev.to both send `*`, so those stay live in the
 browser and are not snapshotted here.
 
-This runs in CI, where CORS does not apply, and writes feeds/ziggit.json for
+This runs in CI, where CORS does not apply, and writes feeds/<key>.json for
 the page to read same-origin.
 
 Usage:
@@ -32,14 +33,20 @@ FORUMS = [
     {
         "key": "ziggit",
         "host": "https://ziggit.dev",
-        "user": "selectedambient",
+        "users": ["selectedambient"],
         "label": "ziggit.dev",
     },
     {
         "key": "rust",
         "host": "https://users.rust-lang.org",
-        "user": "zblauser",
+        "users": ["selectedambient"],
         "label": "rust forum",
+    },
+    {
+        "key": "go",
+        "host": "https://forum.golangbridge.org",
+        "users": ["selectedambient"],
+        "label": "go forum",
     },
 ]
 
@@ -121,9 +128,17 @@ def from_search(forum, data):
 
 
 def fetch_forum(forum):
-    """Try each endpoint in turn. A gated or missing one 404s rather than
-    returning an empty list, so a failure here is not evidence of no posts."""
-    user = forum["user"]
+    """Try each username, then each endpoint in turn. A gated or missing one
+    404s rather than returning an empty list, so a failure here is not
+    evidence of no posts."""
+    for user in forum["users"]:
+        posts = fetch_forum_user(forum, user)
+        if posts:
+            return user, posts
+    return forum["users"][0], []
+
+
+def fetch_forum_user(forum, user):
     attempts = [
         (f"{forum['host']}/user_actions.json"
          f"?username={user}&filter=4,5&limit={LIMIT}", from_user_actions),
@@ -134,11 +149,11 @@ def fetch_forum(forum):
         try:
             posts = parse(forum, get_json(url))
         except (urllib.error.URLError, urllib.error.HTTPError, ValueError) as e:
-            print(f"  {forum['key']}: {url.split('/')[-1].split('?')[0]} -> {e}")
+            print(f"  {forum['key']}/{user}: {url.split('/')[-1].split('?')[0]} -> {e}")
             continue
         if posts:
             return posts
-        print(f"  {forum['key']}: {url.split('/')[-1].split('?')[0]} -> 0 entries")
+        print(f"  {forum['key']}/{user}: {url.split('/')[-1].split('?')[0]} -> 0 entries")
     return []
 
 
@@ -157,7 +172,7 @@ def main():
     for forum in FORUMS:
         key = forum["key"]
         print(f"{key}:")
-        posts = fetch_forum(forum)
+        user, posts = fetch_forum(forum)
 
         if not posts:
             # No posts yet, or every endpoint refused. Either way, keep what is
@@ -167,7 +182,7 @@ def main():
 
         posts.sort(key=lambda p: p.get("time") or "", reverse=True)
         write(os.path.join(FEED_DIR, f"{key}.json"),
-              {"user": forum["user"], "posts": posts[:LIMIT]})
+              {"user": user, "posts": posts[:LIMIT]})
         print(f"  {len(posts[:LIMIT])} entries -> feeds/{key}.json")
         print(f"  newest: {posts[0]['time'][:10]}  {posts[0]['title'][:60]}")
         wrote += 1

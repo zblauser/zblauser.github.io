@@ -4,8 +4,8 @@ name: Refresh vendored assets and feeds
 # Runs on GitHub's infrastructure, so visitors never make a third-party
 # request and the API rate limit is 5000/hr instead of 60/hr.
 #
-# feeds/ziggit.json exists because ziggit.dev sends no CORS header, so the
-# browser cannot read it directly. GitHub and dev.to stay live client-side.
+# feeds/*.json exist because the Discourse forums (ziggit, rust, go) send no
+# CORS header, so the browser cannot read them directly. GitHub and dev.to stay live client-side.
 
 on:
   schedule:

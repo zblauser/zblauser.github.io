@@ -16,14 +16,14 @@
 <meta property="og:title" content="Zachary Blauser">
 <meta property="og:description" content="Systems programmer in Tampa. Mostly C and Zig. A live record of what I am building.">
 <meta property="og:url" content="https://zblauser.dev/">
-<meta property="og:image" content="https://zblauser.dev/assets/og.png">
+<meta property="og:image" content="https://zblauser.dev/assets/og.png?v=2">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:creator" content="@parhelicsquare">
 <meta name="twitter:title" content="Zachary Blauser">
 <meta name="twitter:description" content="Systems programmer in Tampa. Mostly C and Zig. A live record of what I am building.">
-<meta name="twitter:image" content="https://zblauser.dev/assets/og.png">
+<meta name="twitter:image" content="https://zblauser.dev/assets/og.png?v=2">
 </head>
 <body>
 <div class="wrap">
@@ -87,13 +87,15 @@
   'use strict';
 
   const esc = GH.escapeHtml;
-  const SRC = { github:'commit', release:'release', 'dev.to':'dev.to', ziggit:'ziggit', hn:'hacker news', rust:'rust forum' };
+  const SRC = { github:'commit', release:'release', 'dev.to':'dev.to', ziggit:'ziggit', hn:'hacker news', rust:'rust forum', go:'go forum' };
   const ALWAYS = ['github','release','dev.to','ziggit','hn','rust'];
 
   // The one thing the API cannot tell us: which account means what.
   const GROUPS = [
     { owner:'mithraeums', name:'Mithraeum', note:'local-first AI tooling in C',
       url:'https://github.com/mithraeums', site:'https://mithraeum.studio' },
+    { owner:'rfog-org', name:'RFoG', note:'turn-based tactics game in Go',
+      url:'https://github.com/rfog-org', site:'https://rfog.org' },
     { owner:'zblauser', name:'Personal', note:'terminal tools, Zig and Rust',
       url:'https://github.com/zblauser', site:'' },
     { owner:'sys-ae', name:'sys-ae', note:'open-source field service management',
@@ -285,7 +287,7 @@
 
     if (!rows.length) {
       host.innerHTML = ACTIVE === 'all'
-        ? fault('No sources responded and nothing is cached on this device.','github · dev.to · ziggit · hn · rust')
+        ? fault('No sources responded and nothing is cached on this device.','github · dev.to · ziggit · hn · rust · go')
         : '<div class="loading">nothing from this source yet.</div>';
       return;
     }
@@ -332,20 +334,20 @@
   }
 
   (async function feed() {
-    const [gh, devto, ziggit, hn, rust] = await Promise.all([
+    const FORUMS = ['ziggit','rust','go'];
+    const [gh, devto, hn, ...forums] = await Promise.all([
       eventsJob,
       Site.fetchDevtoArticles('zblauser'),
-      Site.fetchForumPosts('ziggit'),
       Site.fetchHNPosts(),
-      Site.fetchForumPosts('rust')
+      ...FORUMS.map(k => Site.fetchForumPosts(k))
     ]);
 
-    const home = { ziggit:'ziggit.dev', rust:'users.rust-lang.org', hn:'news.ycombinator.com' };
+    const home = { ziggit:'ziggit.dev', rust:'users.rust-lang.org', go:'forum.golangbridge.org', hn:'news.ycombinator.com' };
 
     ENTRIES = [
       ...(gh.events || []).map(e => ({ source:'github', time:e.time, repo:e.repo, sha:e.sha, url:e.url, message:e.message })),
       ...(devto || []).map(a => ({ source:'dev.to', time:a.time, repo:'article', sha:'', url:a.url, message:a.title })),
-      ...[...(ziggit||[]), ...(hn||[]), ...(rust||[])].map(p => ({
+      ...[...(hn||[]), ...forums.flat()].map(p => ({
         source:p.source, time:p.time, repo:home[p.source] || p.repo, sha:'', url:p.url,
         message:(p.kind ? p.kind + ' — ' : '') + p.title
       }))
@@ -356,9 +358,12 @@
 
     const dot = document.getElementById('dot'), st = document.getElementById('status');
     const live = new Set(ENTRIES.map(e => e.source)).size;
+    // A forum snapshot with no posts has nothing to fail, so it is not counted
+    // as a source until there is something in it.
+    const expected = 3 + forums.filter(f => f && f.length).length;
     if (ENTRIES.length) {
       dot.classList.add('live');
-      st.textContent = 'last activity ' + GH.timeAgo(ENTRIES[0].time) + ' · ' + live + ' of 5 sources responding';
+      st.textContent = 'last activity ' + GH.timeAgo(ENTRIES[0].time) + ' · ' + live + ' of ' + expected + ' sources responding';
     } else {
       st.textContent = 'no sources responding';
     }
