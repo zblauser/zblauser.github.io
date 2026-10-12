@@ -4,6 +4,14 @@
     {
       "source": "ziggit",
       "repo": "ziggit.dev",
+      "title": "Hum - TUI music player (local, rss, and youtube music)",
+      "kind": "replied",
+      "url": "https://ziggit.dev/t/hum-tui-music-player-local-rss-and-youtube-music/15865/15",
+      "time": "2026-10-11T22:43:03.442Z"
+    },
+    {
+      "source": "ziggit",
+      "repo": "ziggit.dev",
       "title": "Who\u2019s ready (I AM) to break everything they built in 0.16?",
       "kind": "replied",
       "url": "https://ziggit.dev/t/who-s-ready-i-am-to-break-everything-they-built-in-0-16/17862/20",
@@ -152,14 +160,6 @@
       "kind": "replied",
       "url": "https://ziggit.dev/t/hum-tui-music-player-local-rss-and-youtube-music/15865/12",
       "time": "2026-09-05T06:14:07.102Z"
-    },
-    {
-      "source": "ziggit",
-      "repo": "ziggit.dev",
-      "title": "Hum - TUI music player (local, rss, and youtube music)",
-      "kind": "replied",
-      "url": "https://ziggit.dev/t/hum-tui-music-player-local-rss-and-youtube-music/15865/11",
-      "time": "2026-08-16T15:32:12.766Z"
     }
   ]
 }

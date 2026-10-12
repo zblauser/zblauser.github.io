@@ -4,6 +4,14 @@
     {
       "source": "rust",
       "repo": "rust forum",
+      "title": "They cloned commercial desktops apps with Rust",
+      "kind": "replied",
+      "url": "https://users.rust-lang.org/t/they-cloned-commercial-desktops-apps-with-rust/142938/22",
+      "time": "2026-10-11T19:36:16.052Z"
+    },
+    {
+      "source": "rust",
+      "repo": "rust forum",
       "title": "3 questions for c programmers using rust",
       "kind": "replied",
       "url": "https://users.rust-lang.org/t/3-questions-for-c-programmers-using-rust/142269/23",
