@@ -9,7 +9,7 @@
   },
   "org:sys-ae": {
     "file": "assets/orgs/sys-ae.png",
-    "sha": "12358"
+    "sha": "19220"
   },
   "org:vim-nvim-plugins": {
     "file": "assets/orgs/vim-nvim-plugins.png",
@@ -34,6 +34,10 @@
   "repo:rfog-org/rfog": {
     "file": "assets/repos/rfog-org-rfog.svg",
     "sha": "6877a8abac3dc1e3635fb3e8457bd66ce56f8a34"
+  },
+  "repo:sys-ae/fieldopt": {
+    "file": "assets/repos/sys-ae-fieldopt.svg",
+    "sha": "fd1bc0c6d77998f35672ea2cade6fe7c4977928d"
   },
   "repo:sys-ae/fieldopt.github.io": {
     "file": "assets/repos/sys-ae-fieldopt.github.io.png",
