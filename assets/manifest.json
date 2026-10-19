@@ -46,13 +46,5 @@
   "repo:zblauser/LoMux": {
     "file": "assets/repos/zblauser-lomux.png",
     "sha": "4527a649f23b1648bf2bbc01d62f30b196d97fd4"
-  },
-  "repo:zblauser/cicada": {
-    "file": "assets/repos/zblauser-cicada.jpg",
-    "sha": "d79a17bb474568601effe4483a5a724011bbc28c"
-  },
-  "repo:zblauser/tymbal": {
-    "file": "assets/repos/zblauser-tymbal.jpg",
-    "sha": "357b1412229ddb5dca24ff631b078ed8cb3fa7e2"
   }
 }
