@@ -1,11 +1,11 @@
 {
   "org:mithraeums": {
     "file": "assets/orgs/mithraeums.png",
-    "sha": "13064"
+    "sha": "15564"
   },
   "org:rfog-org": {
     "file": "assets/orgs/rfog-org.png",
-    "sha": "61003"
+    "sha": "65712"
   },
   "org:sys-ae": {
     "file": "assets/orgs/sys-ae.png",
@@ -13,7 +13,7 @@
   },
   "org:vim-nvim-plugins": {
     "file": "assets/orgs/vim-nvim-plugins.png",
-    "sha": "1723"
+    "sha": "3925"
   },
   "repo:mithraeums/hako-code": {
     "file": "assets/repos/mithraeums-hako-code.png",
