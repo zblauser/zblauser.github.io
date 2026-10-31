@@ -1,7 +1,7 @@
 {
   "org:mithraeums": {
     "file": "assets/orgs/mithraeums.png",
-    "sha": "15564"
+    "sha": "15075"
   },
   "org:rfog-org": {
     "file": "assets/orgs/rfog-org.png",
@@ -17,19 +17,19 @@
   },
   "repo:mithraeums/hako-code": {
     "file": "assets/repos/mithraeums-hako-code.png",
-    "sha": "75a9dbbe48adb11f6281b2fead2f9d840f6ca29a"
+    "sha": "9eba6acd65c97402c5fb276a422b4376372055d8"
   },
   "repo:mithraeums/hako-edit": {
     "file": "assets/repos/mithraeums-hako-edit.png",
-    "sha": "c9239d94984a82edb165a28c1029a2d848acdc06"
+    "sha": "75ff86784d7e0dc58321541b832735eaa734b26c"
   },
   "repo:mithraeums/hako-studio": {
     "file": "assets/repos/mithraeums-hako-studio.svg",
-    "sha": "bc59746dbd34c5a11c803b19152359add403bae4"
+    "sha": "3702d1487439ef96083896498836248ee6308165"
   },
   "repo:mithraeums/mithraeums.github.io": {
     "file": "assets/repos/mithraeums-mithraeums.github.io.svg",
-    "sha": "c450e0821ea0521fe17b4b1f2a8f8eb470784b4b"
+    "sha": "728fc4ad3e56b97b4bcc09fe6626bbc96c76496c"
   },
   "repo:rfog-org/rfog": {
     "file": "assets/repos/rfog-org-rfog.svg",
