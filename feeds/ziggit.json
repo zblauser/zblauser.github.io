@@ -4,6 +4,14 @@
     {
       "source": "ziggit",
       "repo": "ziggit.dev",
+      "title": "Lui: a simple `ls -lah`-like terminal file manager",
+      "kind": "replied",
+      "url": "https://ziggit.dev/t/lui-a-simple-ls-lah-like-terminal-file-manager/15588/24",
+      "time": "2026-11-11T05:53:36.853Z"
+    },
+    {
+      "source": "ziggit",
+      "repo": "ziggit.dev",
       "title": "Hum - TUI music player (local, rss, and youtube music)",
       "kind": "replied",
       "url": "https://ziggit.dev/t/hum-tui-music-player-local-rss-and-youtube-music/15865/15",
@@ -152,14 +160,6 @@
       "kind": "replied",
       "url": "https://ziggit.dev/t/nova-midi-a-pure-zig-midi-i-o-library-inpired-by-libremidi-and-minimidio/17458/6",
       "time": "2026-09-08T13:42:07.307Z"
-    },
-    {
-      "source": "ziggit",
-      "repo": "ziggit.dev",
-      "title": "Hum - TUI music player (local, rss, and youtube music)",
-      "kind": "replied",
-      "url": "https://ziggit.dev/t/hum-tui-music-player-local-rss-and-youtube-music/15865/12",
-      "time": "2026-09-05T06:14:07.102Z"
     }
   ]
 }
