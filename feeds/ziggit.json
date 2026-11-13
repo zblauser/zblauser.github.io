@@ -4,6 +4,22 @@
     {
       "source": "ziggit",
       "repo": "ziggit.dev",
+      "title": "Has anyone else tried Rex? (built on libghostty)",
+      "kind": "replied",
+      "url": "https://ziggit.dev/t/has-anyone-else-tried-rex-built-on-libghostty/18444/3",
+      "time": "2026-11-13T04:07:05.557Z"
+    },
+    {
+      "source": "ziggit",
+      "repo": "ziggit.dev",
+      "title": "Has anyone else tried Rex? (built on libghostty)",
+      "kind": "posted topic",
+      "url": "https://ziggit.dev/t/has-anyone-else-tried-rex-built-on-libghostty/18444/1",
+      "time": "2026-11-13T03:03:23.299Z"
+    },
+    {
+      "source": "ziggit",
+      "repo": "ziggit.dev",
       "title": "Lui: a simple `ls -lah`-like terminal file manager",
       "kind": "replied",
       "url": "https://ziggit.dev/t/lui-a-simple-ls-lah-like-terminal-file-manager/15588/24",
@@ -144,22 +160,6 @@
       "kind": "replied",
       "url": "https://ziggit.dev/t/i-just-bought-a-laptop-from-2012-for-zig/17615/5",
       "time": "2026-09-17T04:10:36.471Z"
-    },
-    {
-      "source": "ziggit",
-      "repo": "ziggit.dev",
-      "title": "I just bought a laptop from 2012 for zig",
-      "kind": "posted topic",
-      "url": "https://ziggit.dev/t/i-just-bought-a-laptop-from-2012-for-zig/17615/1",
-      "time": "2026-09-15T03:31:04.532Z"
-    },
-    {
-      "source": "ziggit",
-      "repo": "ziggit.dev",
-      "title": "Nova Midi - A pure zig Midi I/O Library inpired by libremidi and minimidio",
-      "kind": "replied",
-      "url": "https://ziggit.dev/t/nova-midi-a-pure-zig-midi-i-o-library-inpired-by-libremidi-and-minimidio/17458/6",
-      "time": "2026-09-08T13:42:07.307Z"
     }
   ]
 }
