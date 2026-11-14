@@ -4,6 +4,14 @@
     {
       "source": "ziggit",
       "repo": "ziggit.dev",
+      "title": "Hum - TUI music player (local, rss, and youtube music)",
+      "kind": "replied",
+      "url": "https://ziggit.dev/t/hum-tui-music-player-local-rss-and-youtube-music/15865/16",
+      "time": "2026-11-14T04:28:52.798Z"
+    },
+    {
+      "source": "ziggit",
+      "repo": "ziggit.dev",
       "title": "Has anyone else tried Rex? (built on libghostty)",
       "kind": "replied",
       "url": "https://ziggit.dev/t/has-anyone-else-tried-rex-built-on-libghostty/18444/3",
@@ -152,14 +160,6 @@
       "kind": "replied",
       "url": "https://ziggit.dev/t/i-just-bought-a-laptop-from-2012-for-zig/17615/6",
       "time": "2026-09-17T04:11:37.416Z"
-    },
-    {
-      "source": "ziggit",
-      "repo": "ziggit.dev",
-      "title": "I just bought a laptop from 2012 for zig",
-      "kind": "replied",
-      "url": "https://ziggit.dev/t/i-just-bought-a-laptop-from-2012-for-zig/17615/5",
-      "time": "2026-09-17T04:10:36.471Z"
     }
   ]
 }
