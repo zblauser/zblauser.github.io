@@ -31,6 +31,10 @@
     "file": "assets/repos/mithraeums-mithraeums.github.io.svg",
     "sha": "728fc4ad3e56b97b4bcc09fe6626bbc96c76496c"
   },
+  "repo:mithraeums/spelaeum": {
+    "file": "assets/repos/mithraeums-spelaeum.svg",
+    "sha": "b8a633818a604b90aa2057f515f963664b49db69"
+  },
   "repo:rfog-org/rfog": {
     "file": "assets/repos/rfog-org-rfog.svg",
     "sha": "f255c7d4631f5c1dbbbd2e1b82cf26e6338c0cc2"
